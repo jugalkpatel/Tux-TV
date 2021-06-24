@@ -1,0 +1,164 @@
+:root {
+  --p-white: #ffffff;
+  --h-padding: 0.5rem;
+  --h-margin: 0.5rem;
+  --t-radius: 0.1rem;
+  --i-green: #3bb54a;
+}
+
+.login {
+  font-family: var(--primary-font);
+  color: var(--p-white);
+}
+
+.login__main {
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.login__label--email,
+.login__label--password {
+  margin: var(--h-margin) 0;
+}
+
+.login__input--email,
+.login__input--password {
+  padding: var(--h-padding);
+
+  outline-color: var(--p-white);
+
+  border: 0;
+}
+
+.login__input--email {
+  margin-bottom: var(--h-margin);
+}
+
+.login__input--password {
+  justify-self: start;
+
+  width: 100%;
+}
+
+.login__input--password:valid {
+  outline: 2px solid var(--i-green);
+}
+
+.login__input--email:valid {
+  outline: 2px solid var(--i-green);
+}
+
+.wrapper--password {
+  display: grid;
+  grid-template-columns: auto 2rem;
+  justify-items: center;
+  align-items: center;
+
+  margin-bottom: var(--h-margin);
+
+  background-color: var(--p-white);
+
+  border-radius: var(--t-radius);
+}
+
+.login__btn--showpassword {
+  border: 0;
+
+  background-color: var(--p-white);
+
+  padding: 0;
+
+  width: fit-content;
+  height: fit-content;
+
+  cursor: pointer;
+}
+
+.wrapper--forgetpassword {
+  display: grid;
+
+  margin: var(--h-margin) 0;
+}
+
+.login__btn--fpassword {
+  text-decoration: none;
+
+  justify-self: end;
+
+  color: var(--l-yellow);
+
+  font-size: 0.8rem;
+}
+
+.wrapper--actions {
+  display: grid;
+
+  grid-template-columns: 3fr 1fr;
+
+  margin-top: 1.5rem;
+
+  gap: 0.5rem;
+}
+
+.login__btn--login,
+.login__btn--signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--l-yellow);
+
+  border-radius: var(--t-radius);
+
+  border-color: var(--l-yellow);
+
+  font-weight: 600;
+
+  padding: var(--h-padding);
+
+  border: 0;
+
+  text-decoration: none;
+}
+
+.login__btn--signup {
+  background-color: transparent;
+
+  color: var(--l-yellow);
+
+  border: 1px solid var(--l-yellow);
+}
+
+@media screen and (min-width: 568px) {
+  .login__main {
+    max-width: 568px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .login__main {
+    padding-top: 4rem;
+  }
+
+  .login__title {
+    font-size: 2rem;
+  }
+
+  .login__label--email,
+  .login__label--password {
+    font-size: 1.3rem;
+  }
+
+  .login__input--password,
+  .login__input--email {
+    padding: 0.7rem;
+  }
+
+  .login__btn--login,
+  .login__btn--signup {
+    padding: 0.7rem;
+  }
+}

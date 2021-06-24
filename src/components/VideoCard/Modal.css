@@ -1,0 +1,196 @@
+:root {
+  --modal-bg-color: rgba(0, 0, 0, 0.3);
+  --m-border-color: rgba(255, 255, 255, 0.1);
+  --ch-blue: #1a0dab;
+  --c-padding: 1rem;
+  --m-text-size: 1.2rem;
+  --n-font-size: 1rem;
+  --ch-size: 1.5rem;
+  --h-margin: 0.5rem;
+  --z-index-two: 2;
+}
+.modal {
+  position: fixed;
+  top: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: var(--modal-bg-color);
+
+  font-family: var(--primary-font);
+
+  z-index: var(--z-index-two);
+}
+
+.modal__dialog {
+  display: flex;
+  flex-direction: column;
+
+  width: 70vw;
+
+  background-color: var(--m-black);
+}
+
+.modal__top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal__title {
+  display: inline;
+
+  color: var(--c-white);
+
+  margin-left: var(--c-margin);
+}
+
+.modal__close-btn {
+  width: fit-content;
+
+  background-color: transparent;
+
+  border: 0;
+
+  padding: 0;
+
+  margin: 0;
+
+  margin-right: var(--c-margin);
+
+  outline-width: 0;
+
+  cursor: pointer;
+}
+
+.modal__content {
+  padding: var(--c-padding);
+  border-top: 1px solid var(--m-border-color);
+  border-bottom: 1px solid var(--m-border-color);
+}
+
+.m-list {
+  display: flex;
+  flex-direction: column;
+
+  padding: 0;
+
+  margin: 0;
+
+  list-style-type: none;
+  text-decoration: none;
+}
+
+.m-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--c-margin);
+}
+
+.modal__playlist-create-btn {
+  display: flex;
+  border: 0;
+  outline-width: 0;
+  padding: var(--c-padding);
+  color: var(--c-white);
+  background-color: transparent;
+  min-width: 100%;
+  cursor: pointer;
+}
+
+.btn-text {
+  margin-left: var(--c-margin);
+  font-size: var(--n-font-size);
+}
+
+.modal__playlist-create {
+  display: flex;
+  flex-direction: column;
+  padding: var(--c-padding);
+}
+
+.modal__playlist-name {
+  color: var(--c-white);
+  margin-bottom: var(--h-margin);
+}
+
+.modal__playlist-name__field {
+  border: 0;
+  border-bottom: 1px solid var(--c-white);
+  background-color: transparent;
+  margin-bottom: var(--c-margin);
+  /* font-size: var(--n-font-size); */
+  font-size: 1rem;
+  outline-width: 0;
+  color: var(--c-white);
+}
+
+.modal__playlist-create__create-btn {
+  align-self: flex-end;
+  max-width: 40%;
+  background-color: transparent;
+  color: var(--c-white);
+  border: 0;
+  outline-width: 0;
+  font-size: var(--n-font-size);
+  padding: 0;
+  font-size: var(--m-text-size);
+  font-weight: 500;
+}
+
+/* checkbox */
+.checkbox__text {
+  color: var(--c-white);
+  font-size: var(--m-text-size);
+  margin-left: var(--c-margin);
+  font-weight: 300;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  height: var(--ch-size);
+  width: var(--ch-size);
+  background-color: var(--m-black);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--m-border-color);
+  border-radius: 0.3rem;
+}
+
+input[type="checkbox"]:after {
+  content: url("../../assets/svgs/check.svg");
+  display: none;
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--ch-blue);
+}
+
+input[type="checkbox"]:checked:after {
+  display: block;
+}
+
+@media screen and (min-width: 568px) {
+  .modal__dialog {
+    width: 50vw;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .modal__dialog {
+    width: 40vw;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .modal__dialog {
+    width: 30vw;
+  }
+}

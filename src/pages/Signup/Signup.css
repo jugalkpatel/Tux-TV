@@ -1,0 +1,174 @@
+:root {
+  --p-white: #ffffff;
+  --h-padding: 0.5rem;
+  --h-margin: 0.5rem;
+  --t-radius: 0.1rem;
+  --i-green: #3bb54a;
+}
+
+.signup {
+  font-family: var(--primary-font);
+  color: var(--p-white);
+}
+
+.signup__main {
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.signup__label--email,
+.signup__label--password,
+.signup__label--uname {
+  margin: var(--h-margin) 0;
+}
+
+.signup__input--email,
+.signup__input--password,
+.signup__input--uname {
+  padding: var(--h-padding);
+
+  outline-color: var(--p-white);
+
+  border: 0;
+}
+
+.signup__input--email,
+.signup__input--uname {
+  margin-bottom: var(--h-margin);
+}
+
+.signup__input--password {
+  justify-self: start;
+
+  width: 100%;
+}
+
+.signup__input--uname:valid {
+  outline: 2px solid var(--i-green);
+}
+
+.signup__input--password:valid {
+  outline: 2px solid var(--i-green);
+}
+
+.signup__input--email:valid {
+  outline: 2px solid var(--i-green);
+}
+
+.wrapper--password {
+  display: grid;
+  grid-template-columns: auto 2rem;
+  justify-items: center;
+  align-items: center;
+
+  margin-bottom: var(--h-margin);
+
+  background-color: var(--p-white);
+
+  border-radius: var(--t-radius);
+}
+
+.signup__btn--showpassword {
+  border: 0;
+
+  background-color: var(--p-white);
+
+  padding: 0;
+
+  width: fit-content;
+  height: fit-content;
+
+  cursor: pointer;
+}
+
+.wrapper--forgetpassword {
+  display: grid;
+
+  margin: var(--h-margin) 0;
+}
+
+.signup__btn--fpassword {
+  text-decoration: none;
+
+  justify-self: end;
+
+  color: var(--l-yellow);
+
+  font-size: 0.8rem;
+}
+
+.wrapper--actions {
+  display: grid;
+
+  grid-template-columns: 3fr 1fr;
+
+  margin-top: 1.5rem;
+
+  gap: 0.5rem;
+}
+
+.signup__btn--signup,
+.signup__btn--login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--l-yellow);
+
+  border-radius: var(--t-radius);
+
+  border-color: var(--l-yellow);
+
+  font-weight: 600;
+
+  padding: var(--h-padding);
+
+  border: 0;
+}
+
+.signup__btn--login {
+  background-color: transparent;
+
+  color: var(--l-yellow);
+
+  border: 1px solid var(--l-yellow);
+
+  text-decoration: none;
+}
+
+@media screen and (min-width: 568px) {
+  .signup__main {
+    max-width: 568px;
+
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .signup__main {
+    padding-top: 2rem;
+  }
+
+  .signup__title {
+    font-size: 2rem;
+  }
+
+  .signup__label--uname,
+  .signup__label--email,
+  .signup__label--password {
+    font-size: 1.3rem;
+  }
+
+  .signup__input--uname,
+  .signup__input--password,
+  .signup__input--email {
+    padding: 0.7rem;
+  }
+
+  .signup__btn--signup,
+  .signup__btn--login {
+    padding: 0.7rem;
+  }
+}

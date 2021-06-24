@@ -1,0 +1,48 @@
+:root {
+  --list-title-color: rgba(255, 255, 255, 0.7);
+}
+
+.home__loader {
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scrollable-list {
+  display: flex;
+  flex-direction: column;
+
+  font-family: var(--primary-font);
+
+  margin-top: 1rem;
+}
+
+.scrollable-list__title {
+  color: var(--list-title-color);
+  padding-left: 1rem;
+
+  margin: 1rem 0 0 0;
+
+  width: fit-content;
+}
+
+.scrollable-list__videos {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 0 1rem;
+}
+
+.scrollable-list__videos::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.scrollable-list__videos::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 10px;
+}
+.scrollable-list__videos::-webkit-scrollbar-thumb {
+  background-color: #212121;
+  border-radius: 10px;
+}
