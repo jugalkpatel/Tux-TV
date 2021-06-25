@@ -64,8 +64,6 @@ const addVideo = async (req, res) => {
 const addSnippet = async (req, res) => {
   const { snippet, id } = req.body;
 
-  console.log({ snippet, id });
-
   const video = await Video.findById(id);
 
   video.snippet = snippet;

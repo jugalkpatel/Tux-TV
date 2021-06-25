@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const { User } = require("../models/user.model");
 
 const isUserExists = async (req, res, next, id) => {
+  console.log("is user exists");
   try {
     const user = await User.findById(id);
 

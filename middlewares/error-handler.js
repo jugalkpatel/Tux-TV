@@ -51,12 +51,12 @@ const errorHandler = (error, req, res, next) => {
   }
 
   console.log(error);
+  console.log(error.stack);
   res.status(error.status || 500);
   res.json({
     success: false,
     status: error.status,
     message: error.message,
-    stack: error.stack,
   });
 };
 

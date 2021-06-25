@@ -25,10 +25,12 @@ const userSchema = new Schema({
     required: [true, "password is required"],
     minLength: [8, "Password should be atleast eight characters"],
   },
-  playlists: {
-    type: Schema.Types.ObjectId,
-    ref: "Playlist",
-  },
+  playlists: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Playlist",
+    },
+  ],
   saved: {
     type: Schema.Types.ObjectId,
     ref: "Saved",
