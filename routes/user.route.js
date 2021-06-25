@@ -10,7 +10,11 @@ const {
   isUserExists,
 } = require("../controllers/user.controllers");
 
-const { create, addVideo } = require("../controllers/playlist.controllers");
+const {
+  create,
+  addVideo,
+  removeVideo,
+} = require("../controllers/playlist.controllers");
 
 userRouter.route("/register").post(asyncHandler(register));
 
@@ -23,6 +27,10 @@ userRouter.route("/:userID/playlists/create").post(asyncHandler(create));
 userRouter
   .route("/:userID/playlists/:playlistID/add")
   .post(asyncHandler(addVideo));
+
+userRouter
+  .route("/:userID/playlists/:playlistID/remove")
+  .post(asyncHandler(removeVideo));
 
 userRouter.route("/:userID/saved").get(async (req, res, next) => {
   console.log("Hello, I'm playlist route");

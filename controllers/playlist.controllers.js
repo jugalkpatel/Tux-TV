@@ -42,4 +42,21 @@ const addVideo = async (req, res) => {
   });
 };
 
-module.exports = { create, addVideo };
+const removeVideo = async (req, res) => {
+  const { id: videoID } = req.body;
+  const { playlistID } = req.params;
+
+  const user = req.user;
+
+  const playlist = await Playlist.findByIdAndUpdate(playlistID, {
+    $pull: { videos: videoID },
+  });
+
+  res.status(201).json({
+    success: true,
+    message: "item successfully removed",
+    playlist,
+  });
+};
+
+module.exports = { create, addVideo, removeVideo };
