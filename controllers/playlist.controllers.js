@@ -1,6 +1,6 @@
 const { Playlist } = require("../models/playlist.model");
 
-const create = async (req, res) => {
+const createPlaylist = async (req, res) => {
   const { title } = req.body;
   const user = req.user;
 
@@ -8,7 +8,6 @@ const create = async (req, res) => {
     title: title,
     owner: user._id,
   });
-
   await playlist.save();
 
   await user.playlists.push(playlist);
@@ -31,8 +30,12 @@ const addVideo = async (req, res) => {
   await playlist.save();
 
   await Playlist.populate(playlist, {
-    path: "videos channel",
+    path: "videos",
     select: "-__v",
+    populate: {
+      path: "channel",
+      select: "-__v -videos",
+    },
   });
 
   res.status(201).json({
@@ -54,9 +57,34 @@ const removeVideo = async (req, res) => {
 
   res.status(201).json({
     success: true,
-    message: "item successfully removed",
+    message: "video successfully removed",
     playlist,
   });
 };
 
-module.exports = { create, addVideo, removeVideo };
+const getPlaylists = async (req, res, next) => {
+  const user = req.user;
+
+  if (!user.playlists.length) {
+    res.status(204).send("there are no playlists");
+    return;
+  }
+
+  const playlists = await Playlist.find({ owner: user._id });
+
+  await Playlist.populate(playlists, {
+    path: "videos",
+    select: "-__v",
+    populate: {
+      path: "channel",
+      select: "-__v -videos",
+    },
+  });
+
+  res.status(200).json({
+    sucess: true,
+    playlists,
+  });
+};
+
+module.exports = { createPlaylist, addVideo, removeVideo, getPlaylists };

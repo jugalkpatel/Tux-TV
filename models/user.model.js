@@ -31,9 +31,9 @@ const userSchema = new Schema({
       ref: "Playlist",
     },
   ],
-  saved: {
+  saves: {
     type: Schema.Types.ObjectId,
-    ref: "Saved",
+    ref: "Saves",
   },
 });
 

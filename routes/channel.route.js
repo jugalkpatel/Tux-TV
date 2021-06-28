@@ -15,9 +15,9 @@ channelRouter
         { $project: { _id: 0, __v: 0 } },
       ]);
 
-      console.log(channels);
+      // console.log(channels);
 
-      if (channels.length <= 0) {
+      if (!channels.length) {
         res.status(404).json({
           suceess: false,
           message: "There are no channels",

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const mongooseUniqueArray = require("mongoose-unique-array");
 const { Schema } = mongoose;
 require("mongoose-type-url");
 const channelSchema = new Schema({
@@ -19,14 +20,16 @@ const channelSchema = new Schema({
     type: mongoose.SchemaTypes.Url,
     required: [true, "thumbnail is required"],
   },
-  videos: {
-    type: [
-      {
-        type: mongoose.SchemaTypes.ObjectId,
-      },
-    ],
-  },
+  videos: [
+    {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "Video",
+      unique: true,
+    },
+  ],
 });
+
+channelSchema.plugin(mongooseUniqueArray);
 
 const Channel = mongoose.model("Channel", channelSchema);
 

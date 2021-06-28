@@ -2,13 +2,15 @@ const jwt = require("jsonwebtoken");
 const createError = require("http-errors");
 const tokenValidator = async (req, res, next) => {
   const token = req.headers.authorization;
-  const decoded = jwt.verify(token, process.env.SECRET_KEY);
+
+  if (!token) {
+    throw createError.Unauthorized("Empty token");
+  }
+  const decoded = await jwt.verify(token, process.env.SECRET_KEY);
 
   if (req.user.name !== decoded.uname) {
-    throw createError(401, "unauthorized user");
+    throw createError.Unauthorized("Invalid token");
   }
-
-  console.log("in token validator");
 
   next();
 };

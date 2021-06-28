@@ -1,7 +1,5 @@
 const express = require("express");
-
 const asyncHandler = require("express-async-handler");
-
 const userRouter = express.Router();
 
 const {
@@ -9,31 +7,24 @@ const {
   login,
   isUserExists,
 } = require("../controllers/user.controllers");
-
 const {
   create,
   addVideo,
   removeVideo,
+  getPlaylists,
 } = require("../controllers/playlist.controllers");
+const { playlistRouter } = require("./playlists.route");
+const { savedRouter } = require("./saved.route");
 
-userRouter.route("/register").post(asyncHandler(register));
+userRouter.post("/register", asyncHandler(register));
 
-userRouter.route("/login").post(asyncHandler(login));
+userRouter.post("/login", asyncHandler(login));
 
+// check if user exists
 userRouter.param("userID", asyncHandler(isUserExists));
 
-userRouter.route("/:userID/playlists/create").post(asyncHandler(create));
+userRouter.use("/:userID/playlists", playlistRouter);
 
-userRouter
-  .route("/:userID/playlists/:playlistID/add")
-  .post(asyncHandler(addVideo));
-
-userRouter
-  .route("/:userID/playlists/:playlistID/remove")
-  .post(asyncHandler(removeVideo));
-
-userRouter.route("/:userID/saved").get(async (req, res, next) => {
-  console.log("Hello, I'm playlist route");
-});
+userRouter.use("/:userID/saved", savedRouter);
 
 module.exports = { userRouter };
