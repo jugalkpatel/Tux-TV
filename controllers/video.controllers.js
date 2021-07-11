@@ -1,6 +1,9 @@
 const createError = require("http-errors");
 
 const { Video } = require("../models/video.model");
+const { Channel } = require("../models/channel.model");
+
+const mongoose = require("mongoose");
 
 const getAllVideos = async (req, res) => {
   const videos = await Video.aggregate([
@@ -19,36 +22,19 @@ const getAllVideos = async (req, res) => {
 };
 
 const addVideo = async (req, res) => {
-  const {
-    video: {
-      title,
-      url,
-      duration,
-      upload_date,
-      thumbnail_src,
-      views,
-      category,
-      likes,
-      dislikes,
-    },
-    channel: channelId,
-  } = req.body;
+  const { title, url, snippet, thumbnail, channelId, category } = req.body;
 
   const channel = await Channel.findById(channelId).exec();
 
   const video = new Video({
     title,
     url,
-    duration,
-    upload_date,
-    thumbnail_src,
-    views,
+    snippet,
+    thumbnail_src: thumbnail,
     category,
-    likes,
-    dislikes,
     channel: mongoose.Types.ObjectId(channelId),
   });
-
+  //
   await channel.videos.push(video);
 
   await video.save();

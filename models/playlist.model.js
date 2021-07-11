@@ -17,6 +17,7 @@ const playlistSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: "Video",
         unique: true,
+        default: null,
       },
     ],
   },

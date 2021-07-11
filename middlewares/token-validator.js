@@ -6,7 +6,8 @@ const tokenValidator = async (req, res, next) => {
   if (!token) {
     throw createError.Unauthorized("Empty token");
   }
-  const decoded = await jwt.verify(token, process.env.SECRET_KEY);
+
+  const decoded = jwt.verify(token, process.env.SECRET_KEY);
 
   if (req.user.name !== decoded.uname) {
     throw createError.Unauthorized("Invalid token");

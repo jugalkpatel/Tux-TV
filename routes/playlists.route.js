@@ -7,7 +7,6 @@ const {
   addVideo,
   removeVideo,
   getPlaylists,
-  getChannels,
 } = require("../controllers/playlist.controllers");
 const { tokenValidator } = require("../middlewares/token-validator");
 

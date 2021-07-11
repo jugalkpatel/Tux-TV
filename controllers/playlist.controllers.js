@@ -8,6 +8,7 @@ const createPlaylist = async (req, res) => {
     title: title,
     owner: user._id,
   });
+
   await playlist.save();
 
   await user.playlists.push(playlist);
@@ -23,6 +24,7 @@ const createPlaylist = async (req, res) => {
 const addVideo = async (req, res) => {
   const { id: videoID } = req.body;
   const { playlistID } = req.params;
+  console.log(videoID, playlistID);
   const user = req.user;
   const playlist = await Playlist.findOne({ _id: playlistID, owner: user._id });
 
@@ -41,7 +43,10 @@ const addVideo = async (req, res) => {
   res.status(201).json({
     success: true,
     message: "video added successfully",
-    playlist,
+    details: { 
+      playlist: playlist.id,
+      video: playlist.videos.slice(-1)[0]
+    },
   });
 };
 
@@ -58,7 +63,7 @@ const removeVideo = async (req, res) => {
   res.status(201).json({
     success: true,
     message: "video successfully removed",
-    playlist,
+    details: { playlist: playlist.id, video: videoID}
   });
 };
 

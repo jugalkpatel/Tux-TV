@@ -5,7 +5,6 @@ const jwt = require("jsonwebtoken");
 const { User } = require("../models/user.model");
 
 const isUserExists = async (req, res, next, id) => {
-  console.log("in user param", id);
   try {
     const user = await User.findById(id);
 
@@ -50,7 +49,7 @@ const login = async (req, res) => {
   const validatePassword = await bcrypt.compare(password, user.password);
 
   if (!validatePassword) {
-    throw createError.Unauthorized("Email/Password is not valid");
+    throw createError(403, "Invalid ID or Password");
   }
 
   const token = jwt.sign({ uname: user.name }, process.env.SECRET_KEY, {

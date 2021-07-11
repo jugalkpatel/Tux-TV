@@ -2,7 +2,7 @@ const { Saves } = require("../models/saves.model");
 const getSaves = async (req, res) => {
   const user = req.user;
 
-  if (!user.saved) {
+  if (!user.saves) {
     res.status(204).send("saved is empty");
     return;
   }
@@ -20,7 +20,7 @@ const getSaves = async (req, res) => {
 
   res.status(200).json({
     success: true,
-    saves,
+    saves: saves.videos,
   });
 };
 
@@ -51,7 +51,7 @@ const addVideo = async (req, res) => {
     res.status(201).json({
       success: true,
       message: "video added successfully",
-      saves,
+      saves: saves.videos,
     });
 
     return;
@@ -74,7 +74,7 @@ const addVideo = async (req, res) => {
   res.status(201).json({
     success: true,
     message: "video add successfully",
-    saves,
+    saves: saves.videos.slice(-1)[0],
   });
 };
 

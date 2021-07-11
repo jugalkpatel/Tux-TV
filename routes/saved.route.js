@@ -18,7 +18,4 @@ savedRouter.post("/add", asyncHandler(addVideo));
 
 savedRouter.post("/remove", asyncHandler(removeVideo));
 
-// /add
-// /remove
-
 module.exports = { savedRouter };

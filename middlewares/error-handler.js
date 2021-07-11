@@ -29,10 +29,10 @@ const handleValidationError = (err, res) => {
   });
 };
 
-const handleJSONWebTokenError = (err, res) => {
+const handleTokenExpiredError = (err, res) => {
   res.status(401).json({
     success: false,
-    message: "invalid_token",
+    message: "Token Expired",
     err,
   });
 };
@@ -46,8 +46,8 @@ const errorHandler = (error, req, res, next) => {
     return (error = handleDuplicateKeyError(error, res));
   }
 
-  if (error.name === "JsonWebTokenError") {
-    return (error = handleJSONWebTokenError(error, res));
+  if (error.name === "TokenExpiredError") {
+    return (error = handleTokenExpiredError(error, res));
   }
 
   console.log(error);

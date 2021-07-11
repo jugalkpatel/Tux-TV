@@ -7,12 +7,7 @@ const {
   login,
   isUserExists,
 } = require("../controllers/user.controllers");
-const {
-  create,
-  addVideo,
-  removeVideo,
-  getPlaylists,
-} = require("../controllers/playlist.controllers");
+
 const { playlistRouter } = require("./playlists.route");
 const { savedRouter } = require("./saved.route");
 

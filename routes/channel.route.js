@@ -1,21 +1,21 @@
 const express = require("express");
 
+const asyncHandler = require("express-async-handler");
+
 const channelRouter = express.Router();
 
 const { Channel } = require("../models/channel.model");
+const { addChannel } = require("../controllers/channels.controllers");
 
 channelRouter
   .route("/")
   .get(async (req, res) => {
     try {
-      // const channels = await Channel.find({});
+      const channels = await Channel.find({});
 
-      const channels = await Channel.aggregate([
-        { $addFields: { channelID: "$_id" } },
-        { $project: { _id: 0, __v: 0 } },
-      ]);
-
-      // console.log(channels);
+      await Channel.populate(channels, {
+        path: "videos",
+      });
 
       if (!channels.length) {
         res.status(404).json({
@@ -33,7 +33,6 @@ channelRouter
         channels,
       });
     } catch (error) {
-      // logging error
       console.log(error);
       res.status(500).json({
         success: false,
@@ -42,32 +41,6 @@ channelRouter
       });
     }
   })
-  .post(async (req, res) => {
-    try {
-      const { title, url, snippet, thumbnail_src } = req.body;
-
-      const channel = new Channel({
-        title: title,
-        url: url,
-        snippet: snippet,
-        thumbnail_src: thumbnail_src,
-      });
-
-      await channel.save();
-
-      res.status(201).json({
-        success: true,
-        message: "channel is added",
-        channel,
-      });
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({
-        success: false,
-        message: "Error occurred while creating channel",
-        error,
-      });
-    }
-  });
+  .post(asyncHandler(addChannel));
 
 exports.channelRouter = channelRouter;
