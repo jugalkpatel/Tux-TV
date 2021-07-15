@@ -38,7 +38,7 @@ const register = async (req, res) => {
   res.status(201).json({
     success: true,
     message: "user created successfully",
-    credentials: { token, id: user._id },
+    credentials: { token, id: user._id, name: user.name },
   });
 };
 
@@ -66,6 +66,7 @@ const login = async (req, res) => {
     message: "user is authenticated successfully",
     token,
     id: user._id,
+    name: user.name,
   });
 };
 

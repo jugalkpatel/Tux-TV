@@ -1,5 +1,7 @@
 const { Playlist } = require("../models/playlist.model");
 
+const mongoose = require("mongoose");
+
 const createPlaylist = async (req, res) => {
   const { title } = req.body;
   const user = req.user;
@@ -43,9 +45,9 @@ const addVideo = async (req, res) => {
   res.status(201).json({
     success: true,
     message: "video added successfully",
-    details: { 
+    details: {
       playlist: playlist.id,
-      video: playlist.videos.slice(-1)[0]
+      video: playlist.videos.slice(-1)[0],
     },
   });
 };
@@ -54,8 +56,6 @@ const removeVideo = async (req, res) => {
   const { id: videoID } = req.body;
   const { playlistID } = req.params;
 
-  const user = req.user;
-
   const playlist = await Playlist.findByIdAndUpdate(playlistID, {
     $pull: { videos: videoID },
   });
@@ -63,7 +63,7 @@ const removeVideo = async (req, res) => {
   res.status(201).json({
     success: true,
     message: "video successfully removed",
-    details: { playlist: playlist.id, video: videoID}
+    details: { playlist: playlist.id, video: videoID },
   });
 };
 
