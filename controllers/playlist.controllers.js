@@ -1,6 +1,5 @@
 const { Playlist } = require("../models/playlist.model");
-
-const mongoose = require("mongoose");
+const { User } = require("../models/user.model");
 
 const createPlaylist = async (req, res) => {
   const { title } = req.body;
@@ -20,6 +19,21 @@ const createPlaylist = async (req, res) => {
     success: true,
     message: "Playlist created successfully",
     playlist,
+  });
+};
+
+const removePlaylist = async (req, res) => {
+  const { id: playlistID } = req.body;
+  const { _id } = req.user;
+
+  const playlist = await Playlist.findByIdAndRemove(playlistID);
+
+  await User.findByIdAndUpdate(_id, { $pull: { playlists: playlistID } });
+
+  res.status(201).json({
+    success: true,
+    msg: "Playlist Removed successfully",
+    playlist: playlist.id,
   });
 };
 
@@ -92,4 +106,10 @@ const getPlaylists = async (req, res, next) => {
   });
 };
 
-module.exports = { createPlaylist, addVideo, removeVideo, getPlaylists };
+module.exports = {
+  createPlaylist,
+  removePlaylist,
+  addVideo,
+  removeVideo,
+  getPlaylists,
+};

@@ -4,6 +4,7 @@ const playlistRouter = express.Router();
 
 const {
   createPlaylist,
+  removePlaylist,
   addVideo,
   removeVideo,
   getPlaylists,
@@ -15,6 +16,8 @@ playlistRouter.use(asyncHandler(tokenValidator));
 playlistRouter.get("/", asyncHandler(getPlaylists));
 
 playlistRouter.post("/create", asyncHandler(createPlaylist));
+
+playlistRouter.post("/remove", asyncHandler(removePlaylist));
 
 playlistRouter.post("/:playlistID/add", asyncHandler(addVideo));
 
