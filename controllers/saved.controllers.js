@@ -51,16 +51,21 @@ const addVideo = async (req, res) => {
     res.status(201).json({
       success: true,
       message: "video added successfully",
-      saves: saves.videos,
+      saves: saves.videos.slice(-1)[0],
     });
 
     return;
   }
 
-  const saves = await Saves.findById(user.saves);
+  // const saves = await Saves.findById(user.saves);
 
-  await saves.videos.push(videoID);
-  await saves.save();
+  const saves = await Saves.findByIdAndUpdate(
+    user.saves,
+    {
+      $addToSet: { videos: videoID },
+    },
+    { new: true }
+  );
 
   await Saves.populate(saves, {
     path: "videos",

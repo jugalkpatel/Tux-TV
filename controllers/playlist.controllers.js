@@ -40,7 +40,7 @@ const removePlaylist = async (req, res) => {
 const addVideo = async (req, res) => {
   const { id: videoID } = req.body;
   const { playlistID } = req.params;
-  console.log(videoID, playlistID);
+
   const user = req.user;
   const playlist = await Playlist.findOne({ _id: playlistID, owner: user._id });
 
@@ -81,7 +81,7 @@ const removeVideo = async (req, res) => {
   });
 };
 
-const getPlaylists = async (req, res, next) => {
+const getPlaylists = async (req, res) => {
   const user = req.user;
 
   if (!user.playlists.length) {
