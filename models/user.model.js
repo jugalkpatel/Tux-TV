@@ -24,6 +24,7 @@ const userSchema = new Schema({
     type: String,
     required: [true, "password is required"],
     minLength: [8, "Password should be atleast eight characters"],
+    trim: true,
   },
   playlists: [
     {
@@ -39,17 +40,6 @@ const userSchema = new Schema({
 
 userSchema.index({ name: 1 }, { unique: true });
 userSchema.index({ email: 1 }, { unique: true });
-
-userSchema.pre("save", async function (next) {
-  try {
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(this.password, salt);
-    this.password = hashedPassword;
-    next();
-  } catch (error) {
-    next(error);
-  }
-});
 
 const User = mongoose.model("User", userSchema);
 

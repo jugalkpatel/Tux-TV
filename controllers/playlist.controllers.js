@@ -42,10 +42,17 @@ const addVideo = async (req, res) => {
   const { playlistID } = req.params;
 
   const user = req.user;
-  const playlist = await Playlist.findOne({ _id: playlistID, owner: user._id });
+  const playlist = await Playlist.findOneAndUpdate(
+    {
+      _id: playlistID,
+      owner: user._id,
+    },
+    { $addToSet: { videos: videoID } },
+    { new: true }
+  );
 
-  await playlist.videos.push(videoID);
-  await playlist.save();
+  // await playlist.videos.push(videoID);
+  // await playlist.save();
 
   await Playlist.populate(playlist, {
     path: "videos",

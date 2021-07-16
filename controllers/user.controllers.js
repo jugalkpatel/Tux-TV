@@ -23,10 +23,12 @@ const isUserExists = async (req, res, next, id) => {
 const register = async (req, res) => {
   const { name, email, password } = req.body;
 
+  const hashedPassword = await bcrypt.hash(password, 10);
+
   const user = new User({
     name,
     email,
-    password,
+    password: hashedPassword,
   });
 
   await user.save();
@@ -47,6 +49,8 @@ const login = async (req, res) => {
 
   const user = await User.findOne({ email }).exec();
 
+  console.log(user);
+
   if (!user) {
     throw createError.NotFound("User not registered");
   }
@@ -54,7 +58,7 @@ const login = async (req, res) => {
   const validatePassword = await bcrypt.compare(password, user.password);
 
   if (!validatePassword) {
-    throw createError(403, "Invalid ID or Password");
+    throw createError(403, "Invalid email ID or Password");
   }
 
   const token = jwt.sign({ uname: user.name }, process.env.SECRET_KEY, {

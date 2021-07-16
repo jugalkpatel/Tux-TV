@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const mongooseUniqueArray = require("mongoose-unique-array");
 const { Schema } = mongoose;
 const playlistSchema = new Schema(
   {
@@ -16,8 +15,6 @@ const playlistSchema = new Schema(
       {
         type: Schema.Types.ObjectId,
         ref: "Video",
-        unique: true,
-        default: null,
       },
     ],
   },
@@ -31,8 +28,6 @@ const playlistSchema = new Schema(
     },
   }
 );
-
-playlistSchema.plugin(mongooseUniqueArray);
 
 const Playlist = mongoose.model("Playlist", playlistSchema);
 
