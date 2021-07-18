@@ -57,8 +57,6 @@ const addVideo = async (req, res) => {
     return;
   }
 
-  // const saves = await Saves.findById(user.saves);
-
   const saves = await Saves.findByIdAndUpdate(
     user.saves,
     {

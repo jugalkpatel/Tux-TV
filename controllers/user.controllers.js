@@ -49,8 +49,6 @@ const login = async (req, res) => {
 
   const user = await User.findOne({ email }).exec();
 
-  console.log(user);
-
   if (!user) {
     throw createError.NotFound("User not registered");
   }

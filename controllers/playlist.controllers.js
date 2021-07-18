@@ -51,9 +51,6 @@ const addVideo = async (req, res) => {
     { new: true }
   );
 
-  // await playlist.videos.push(videoID);
-  // await playlist.save();
-
   await Playlist.populate(playlist, {
     path: "videos",
     select: "-__v",
