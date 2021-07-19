@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const mongooseUniqueArray = require("mongoose-unique-array");
 
 const savesSchema = new Schema({
   owner: {
@@ -16,8 +15,6 @@ const savesSchema = new Schema({
     },
   ],
 });
-
-savesSchema.plugin(mongooseUniqueArray);
 
 const Saves = mongoose.model("Saves", savesSchema);
 
