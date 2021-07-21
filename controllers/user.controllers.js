@@ -34,7 +34,7 @@ const register = async (req, res) => {
   await user.save();
 
   const token = jwt.sign({ uname: user.name }, process.env.SECRET_KEY, {
-    expiresIn: "72h",
+    expiresIn: "15m",
   });
 
   res.status(201).json({

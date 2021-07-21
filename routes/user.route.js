@@ -15,7 +15,6 @@ userRouter.post("/register", asyncHandler(register));
 
 userRouter.post("/login", asyncHandler(login));
 
-// check if user exists
 userRouter.param("userID", asyncHandler(isUserExists));
 
 userRouter.use("/:userID/playlists", playlistRouter);

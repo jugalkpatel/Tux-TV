@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-require("dotenv").config();
 const getConnection = async () => {
   try {
     await mongoose.connect(
