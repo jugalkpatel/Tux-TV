@@ -6,14 +6,16 @@ const { Channel } = require("../models/channel.model");
 const mongoose = require("mongoose");
 
 const getAllVideos = async (req, res) => {
-  const videos = await Video.aggregate([
-    { $addFields: { id: "$_id" } },
-    { $project: { _id: 0, __v: 0 } },
-  ]);
+  const videos = await Video.find({});
 
   if (!videos) {
     throw createError(404, "videos not found");
   }
+
+  await Video.populate(videos, {
+    path: "channel",
+    select: "title url id thumbnail_src",
+  });
 
   res.status(200).json({
     success: true,
