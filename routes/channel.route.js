@@ -15,6 +15,10 @@ channelRouter
 
       await Channel.populate(channels, {
         path: "videos",
+        populate: {
+          path: "channel",
+          select: "id title url thumbnail_src",
+        },
       });
 
       if (!channels.length) {

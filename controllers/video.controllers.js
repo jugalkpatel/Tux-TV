@@ -36,7 +36,7 @@ const addVideo = async (req, res) => {
     category,
     channel: mongoose.Types.ObjectId(channelId),
   });
-  //
+
   await channel.videos.push(video);
 
   await video.save();
