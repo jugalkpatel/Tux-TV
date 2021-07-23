@@ -4,7 +4,7 @@ const app = express();
 const cors = require("cors");
 const createError = require("http-errors");
 
-const { getConnection } = require("./mongoose.connection");
+const { getConnection } = require("./services/mongoose.connection");
 const { videoRouter } = require("./routes/video.route");
 const { channelRouter } = require("./routes/channel.route");
 const { userRouter } = require("./routes/user.route");
