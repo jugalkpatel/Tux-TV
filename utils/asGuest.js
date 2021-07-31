@@ -3,7 +3,6 @@ const { User } = require("../models/user.model");
 const { Saves } = require("../models/saves.model");
 const { Playlist } = require("../models/playlist.model");
 const asGuest = async (email) => {
-  console.log("asGuest called");
   try {
     const user = await User.findOneAndUpdate({ email }, { playlists: [] });
 
