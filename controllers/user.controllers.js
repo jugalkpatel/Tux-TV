@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const { User } = require("../models/user.model");
+const { asGuest } = require("../utils/asGuest");
 
 const isUserExists = async (req, res, next, id) => {
   try {
@@ -59,9 +60,18 @@ const login = async (req, res) => {
     throw createError(403, "Invalid email ID or Password");
   }
 
-  const token = jwt.sign({ uname: user.name }, process.env.SECRET_KEY, {
-    expiresIn: "72h",
-  });
+  let token;
+
+  if (email === "guest@gmail.com") {
+    asGuest(email);
+    token = jwt.sign({ uname: user.name }, process.env.SECRET_KEY, {
+      expiresIn: "30m",
+    });
+  } else {
+    token = jwt.sign({ uname: user.name }, process.env.SECRET_KEY, {
+      expiresIn: "72h",
+    });
+  }
 
   res.status(201).json({
     succes: true,
