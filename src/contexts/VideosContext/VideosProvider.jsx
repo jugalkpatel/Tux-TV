@@ -11,10 +11,7 @@ const VideosProvider = ({ children }) => {
     (async () => {
       const { SET_VIDEOS, SET_CHANNELS } = actions;
       try {
-        const URLs = [
-          "https://tuxtv.herokuapp.com/videos",
-          "https://tuxtv.herokuapp.com/channels",
-        ];
+        const URLs = ["/videos", "/channels"];
 
         const requests = URLs.map((URL) => axios.get(URL).catch((err) => err));
 

@@ -27,18 +27,18 @@ const CheckBox = ({ videoID, ...playlist }) => {
 
     if (!isLoading) {
       const URL = !isInPlaylist
-        ? `https://tuxtv.herokuapp.com/user/${userID}/playlists/${id}/add`
-        : `https://tuxtv.herokuapp.com/user/${userID}/playlists/${id}/remove`;
+        ? `/user/${userID}/playlists/${id}/add`
+        : `/user/${userID}/playlists/${id}/remove`;
 
       const { data, status } = await postAPI(URL, { id: videoID });
+
+      setLoading(false);
 
       if (status === 201) {
         dispatchData({ type: action, payload: { ...data.details } });
       } else {
         setupToast("error while adding video to the playlist....");
       }
-
-      setLoading(false);
     }
   };
 

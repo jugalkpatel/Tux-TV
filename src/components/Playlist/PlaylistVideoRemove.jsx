@@ -17,26 +17,26 @@ const PlaylistVideoRemove = ({ data }) => {
   const { REMOVE_FROM_PLAYLIST } = actions;
 
   const [isLoading, setLoading] = useState(false);
+
   const onVideoRemove = async () => {
     setLoading(true);
 
     if (!isLoading) {
       const { data, status } = await postAPI(
-        `https://tuxtv.herokuapp.com/user/${userID}/playlists/${playlistID}/remove`,
+        `/user/${userID}/playlists/${playlistID}/remove`,
         { id: videoID }
       );
 
+      setLoading(false);
+
       if (status === 201) {
-        setLoading(false);
         dispatchData({
           type: REMOVE_FROM_PLAYLIST,
           payload: { ...data.details },
         });
-        return;
+      } else {
+        setupToast("error while removing video from playlist....");
       }
-
-      // TODO: SHOW TOAST OPERATION FAILED
-      setupToast("error while removing video from playlist....");
     }
   };
 

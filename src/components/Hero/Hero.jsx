@@ -40,6 +40,7 @@ const Hero = ({ ...video }) => {
             <SaveButton
               data={{
                 btnClass: "hero__btn--save",
+                ldColor: "#FFD14A",
                 id,
                 svgSaved: <BsBookmarkFill className="hero-icon" />,
                 svgNotSaved: <BsBookmark className="hero-icon" />,

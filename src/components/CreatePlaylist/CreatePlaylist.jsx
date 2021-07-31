@@ -5,12 +5,13 @@ import Loader from "react-loader-spinner";
 
 import { actions } from "../../utils/actions";
 import { postAPI } from "../../utils/postAPI";
-import { useAuth, useData } from "../../contexts";
+import { useAuth, useData, useToast } from "../../contexts";
 
 const CreatePlaylist = ({ displayAddPlaylist }) => {
   const { CREATE_PLAYLIST } = actions;
   const { userID } = useAuth();
   const { dispatchData } = useData();
+  const { setupToast } = useToast();
 
   const [title, setTitle] = useState("");
   const [isLoading, setLoading] = useState(false);
@@ -24,17 +25,17 @@ const CreatePlaylist = ({ displayAddPlaylist }) => {
 
     if (!isLoading) {
       const { data, status } = await postAPI(
-        `https://tuxtv.herokuapp.com/user/${userID}/playlists/create`,
+        `/user/${userID}/playlists/create`,
         { title }
       );
 
       if (status === 201) {
         dispatchData({ type: CREATE_PLAYLIST, payload: { ...data } });
-        setLoading(false);
-        return;
+      } else {
+        setupToast("Creating Playlist failed....");
       }
 
-      //SHOW ERROR: OPERATION FAILED
+      setLoading(false);
     }
   };
 

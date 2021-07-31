@@ -9,7 +9,15 @@ import { isInSaves } from "../../utils/isVideoInSaves";
 import { postAPI } from "../../utils/postAPI";
 
 const SaveButton = ({ data }) => {
-  const { btnClass, id, svgSaved, svgNotSaved, btnText, btnTextClass } = data;
+  const {
+    btnClass,
+    ldColor,
+    id,
+    svgSaved,
+    svgNotSaved,
+    btnText,
+    btnTextClass,
+  } = data;
   const { ADD_TO_SAVE, REMOVE_FROM_SAVE } = actions;
   const navigate = useNavigate();
   const { saves, dispatchData } = useData();
@@ -26,20 +34,19 @@ const SaveButton = ({ data }) => {
     setLoading(true);
 
     const URL = !isVideoInSaves
-      ? `https://tuxtv.herokuapp.com/user/${userID}/saved/add`
-      : `https://tuxtv.herokuapp.com/user/${userID}/saved/remove`;
+      ? `/user/${userID}/saved/add`
+      : `/user/${userID}/saved/remove`;
 
     if (!isLoading) {
       const { data, status } = await postAPI(URL, { id });
 
+      setLoading(false);
+
       if (status === 201) {
         dispatchData({ type: action, payload: { ...data } });
       } else {
-        // TODO: OPERATION FAILED
         setupToast("Operation failed....");
       }
-
-      setLoading(false);
     }
   };
 
@@ -53,7 +60,7 @@ const SaveButton = ({ data }) => {
         {isLoading ? (
           <Loader
             type="Bars"
-            color={btnText ? "#ffd14a" : "#fff"}
+            color={ldColor ? "#ffd14a" : "#fff"}
             height={btnText ? 27.19 : 13.33}
             width={btnText ? 27.19 : 13.33}
           />

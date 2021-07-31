@@ -31,13 +31,10 @@ const AuthButton = ({ data }) => {
         return;
       }
 
-      const { data, status } = await postAPI(
-        `https://tuxtv.herokuapp.com/user/login`,
-        {
-          email,
-          password,
-        }
-      );
+      const { data, status } = await postAPI(`/user/login`, {
+        email,
+        password,
+      });
 
       if (status === 201) {
         const { token, id, name } = data;
@@ -78,14 +75,11 @@ const AuthButton = ({ data }) => {
         return;
       }
 
-      const { data, status } = await postAPI(
-        "https://tuxtvbk.azurewebsites.net/user/register",
-        {
-          name: userName,
-          email,
-          password,
-        }
-      );
+      const { data, status } = await postAPI("/user/register", {
+        name: userName,
+        email,
+        password,
+      });
 
       if (status === 201) {
         const { token, id, name } = data.credentials;

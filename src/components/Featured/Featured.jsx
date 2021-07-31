@@ -44,6 +44,7 @@ const Featured = ({ ...video }) => {
           <SaveButton
             data={{
               btnClass: "featured__btn--save",
+              ldColor: "#FFD14A",
               id,
               svgSaved: <BsBookmarkFill className="featured-icon" />,
               svgNotSaved: <BsBookmark className="featured-icon" />,

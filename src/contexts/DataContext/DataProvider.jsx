@@ -17,10 +17,7 @@ const DataProvider = ({ children }) => {
         return;
       }
 
-      const URLs = [
-        `https://tuxtv.herokuapp.com/user/${userID}/playlists`,
-        `https://tuxtv.herokuapp.com/user/${userID}/saved`,
-      ];
+      const URLs = [`/user/${userID}/playlists`, `/user/${userID}/saved`];
 
       try {
         const requests = URLs.map((URL) => axios.get(URL).catch((err) => err));

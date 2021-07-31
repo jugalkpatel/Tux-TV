@@ -29,6 +29,7 @@ const Video = () => {
                   <SaveButton
                     data={{
                       btnClass: "video__btn--save",
+                      ldColor: "#FFD14A",
                       id,
                       svgSaved: <BsBookmarkFill className="video-icon" />,
                       svgNotSaved: <BsBookmark className="video-icon" />,

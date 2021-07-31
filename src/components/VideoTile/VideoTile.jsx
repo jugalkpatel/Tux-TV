@@ -21,9 +21,7 @@ const VideoTile = ({ ...video }) => {
 
       <section className="vtile__front">
         <section className="vtile__front__dialog">
-          <Link to="/video" className="vtile__title">
-            {title}
-          </Link>
+          <span className="vtile__title">{title}</span>
 
           <p className="vtile__desc text-truncate">{snippet}</p>
 
@@ -40,6 +38,7 @@ const VideoTile = ({ ...video }) => {
             <SaveButton
               data={{
                 btnClass: "vtile__btn--save",
+                ldColor: "#FFD14A",
                 id,
                 svgSaved: <FaBookmark className="vtile-icon" />,
                 svgNotSaved: <FaRegBookmark className="vtile-icon" />,

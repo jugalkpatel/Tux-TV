@@ -21,19 +21,18 @@ const PlaylistMenu = ({ menu, playlist }) => {
 
     if (!isLoading) {
       const { data, status } = await postAPI(
-        `https://tuxtv.herokuapp.com/user/${userID}/playlists/remove`,
+        `/user/${userID}/playlists/remove`,
         { id }
       );
 
+      setLoading(false);
+
       if (status === 201) {
-        setLoading(false);
         setShowMenu(false);
         dispatchData({ type: REMOVE_PLAYLIST, payload: { ...data } });
-        return;
+      } else {
+        setupToast("error while removing playlist....");
       }
-
-      // TODO: SHOW TOAST OPERATION FAILED
-      setupToast("error while removing playlist....");
     }
   };
 
