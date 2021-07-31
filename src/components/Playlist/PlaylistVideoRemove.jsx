@@ -1,0 +1,56 @@
+import { useState } from "react";
+
+import "./PlaylistTile.css";
+import { AiOutlineClose } from "react-icons/ai";
+import Loader from "react-loader-spinner";
+
+import { actions } from "../../utils/actions";
+import { postAPI } from "../../utils/postAPI";
+import { useAuth, useData, useToast } from "../../contexts";
+
+const PlaylistVideoRemove = ({ data }) => {
+  const { playlistID, videoID } = data;
+  const { dispatchData } = useData();
+  const { userID } = useAuth();
+  const { setupToast } = useToast();
+
+  const { REMOVE_FROM_PLAYLIST } = actions;
+
+  const [isLoading, setLoading] = useState(false);
+  const onVideoRemove = async () => {
+    setLoading(true);
+
+    if (!isLoading) {
+      const { data, status } = await postAPI(
+        `https://tuxtv.herokuapp.com/user/${userID}/playlists/${playlistID}/remove`,
+        { id: videoID }
+      );
+
+      if (status === 201) {
+        setLoading(false);
+        dispatchData({
+          type: REMOVE_FROM_PLAYLIST,
+          payload: { ...data.details },
+        });
+        return;
+      }
+
+      // TODO: SHOW TOAST OPERATION FAILED
+      setupToast("error while removing video from playlist....");
+    }
+  };
+
+  return (
+    <>
+      <button className="pt__btn--remove" onClick={() => onVideoRemove()}>
+        {isLoading ? (
+          <Loader type="Bars" color="#fff" height={15.99} width={15.99} />
+        ) : (
+          <AiOutlineClose className="pt__icon" />
+        )}
+      </button>
+    </>
+  );
+};
+
+export { PlaylistVideoRemove };

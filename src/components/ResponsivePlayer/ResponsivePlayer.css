@@ -1,0 +1,25 @@
+.player-wrapper {
+  position: relative;
+  /* change this padding for different screens */
+  padding-top: 56.25%;
+  height: 60vh;
+}
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@media screen and (min-width: 850px) {
+  .player-wrapper {
+    padding-top: 45%;
+    height: 70vh;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .player-wrapper {
+    padding-top: 40.25%;
+  }
+}

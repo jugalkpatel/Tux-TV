@@ -3,15 +3,12 @@
   flex-direction: column;
   justify-content: center;
 
-  max-width: 10rem;
-  max-height: 10rem;
+  max-width: var(--u-10);
+  max-height: var(--u-10);
 
   text-decoration: none;
 
-  /* border: 1px solid white; */
-
-  margin: 1rem;
-  margin-left: 0;
+  margin: var(--u-1);
 
   cursor: pointer;
 }
@@ -32,15 +29,15 @@
   align-items: center;
   justify-content: center;
 
-  width: 8rem;
-  max-width: 9rem;
+  width: var(--u-8);
+  max-width: var(--u-9);
   max-height: 100%;
 
-  padding: 0 1.5rem;
+  padding: 0 var(--u-1p5);
 }
 
 .c-card__name {
-  color: var(--video-text-color);
+  color: var(--c-white);
   text-align: center;
 
   white-space: nowrap;

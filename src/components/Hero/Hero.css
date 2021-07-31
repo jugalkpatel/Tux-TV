@@ -5,7 +5,7 @@
 
 .hero__back {
   height: 100vh;
-  max-height: 85vh;
+  max-height: 80vh;
 
   opacity: 0.5;
 
@@ -25,9 +25,10 @@
   background: linear-gradient(
     90deg,
     rgba(18, 18, 18, 1) 0%,
-    rgba(18, 18, 18, 0) 50%
+    rgba(18, 18, 18, 0.9) 50%,
+    rgba(18, 18, 18, 0.75) 70%,
+    rgba(18, 18, 18, 0) 100%
   );
-
   position: absolute;
   top: 0;
   right: 0;
@@ -41,18 +42,22 @@
   display: flex;
   flex-direction: column;
 
-  margin: 2rem 1rem 0 1rem;
+  margin: var(--u-2) var(--u-1) 0 var(--u-1);
+
+  max-width: var(--u-56);
 }
 
 .hero__title {
   color: var(--c-skyblue);
 
-  margin: 0 0 1rem 0;
+  margin: 0 0 var(--u-1) 0;
 
-  font-size: 2.3rem;
+  font-size: var(--u-2p3);
   font-weight: 700;
 
   text-decoration: none;
+
+  /* -webkit-line-clamp: 3; */
 }
 
 .hero__title:hover {
@@ -63,16 +68,14 @@
 .hero__desc {
   color: var(--c-white);
 
-  font-size: 1.5rem;
+  font-size: var(--u-1p5);
   font-weight: 600;
-
-  -webkit-line-clamp: 3;
 
   padding: 0;
 
-  margin: 0 0 1rem 0;
+  margin: 0 0 var(--u-1) 0;
 
-  max-width: 48rem;
+  max-width: var(--u-56);
 }
 
 .hero__media {
@@ -81,12 +84,57 @@
 }
 
 .hero .scrollable-list {
-  margin-top: 7rem;
+  margin-top: var(--u-7);
+}
+
+.hero__btn--play,
+.hero__btn--save,
+.hero__btn--playlist {
+  display: inline-flex;
+  align-items: center;
+
+  background-color: var(--l-yellow);
+
+  border: 0;
+  border-radius: var(--u-p3);
+
+  margin: var(--u-1);
+  margin-left: 0rem;
+
+  padding: var(--u-1p5) var(--u-2);
+
+  cursor: pointer;
+}
+
+.hero__btn--play {
+  color: var(--c-black);
+  text-decoration: none;
+}
+
+.hero__btn--save,
+.hero__btn--playlist {
+  display: inline-flex;
+  background-color: transparent;
+  color: var(--l-yellow);
+  align-items: center;
+}
+
+.hero__btn--playlist {
+  text-decoration: none;
+}
+
+.hero__btn--text {
+  font-size: var(--u-1p5);
+  margin-left: var(--u-1);
+}
+
+.hero-icon {
+  font-size: var(--u-1p3);
 }
 
 @media screen and (min-width: 568px) {
   .hero__title {
-    font-size: 2.9rem;
+    font-size: var(--u-2p9);
   }
 
   .hero__front {
@@ -94,22 +142,28 @@
   }
 
   .hero__front__dialog {
-    margin: 0 1.5rem;
+    margin: 0 var(--u-1p5);
   }
 }
 
 @media screen and (min-width: 768px) {
   .hero__title {
-    font-size: 3.3rem;
+    font-size: var(--u-3p3);
+
+    -webkit-line-clamp: 3;
+  }
+
+  .hero__desc {
+    -webkit-line-clamp: 3;
   }
 }
 
 @media screen and (min-width: 991px) {
   .hero__title {
-    font-size: 3.7rem;
+    font-size: var(--u-3p7);
   }
 
   .hero__front__dialog {
-    margin: 0 2rem;
+    margin: 0 var(--u-2);
   }
 }

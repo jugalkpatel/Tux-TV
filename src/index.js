@@ -2,20 +2,27 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import "./index.css";
-
 import App from "./App";
-import { AuthProvider } from "./contexts/AuthProvider";
-import { DataProvider } from "./contexts/DataProvider";
+
+import {
+  ToastProvider,
+  AuthProvider,
+  VideosProvider,
+  DataProvider,
+} from "./contexts";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <AuthProvider>
-        <DataProvider>
-          <App />
-        </DataProvider>
-      </AuthProvider>
+      <ToastProvider>
+        <VideosProvider>
+          <AuthProvider>
+            <DataProvider>
+              <App />
+            </DataProvider>
+          </AuthProvider>
+        </VideosProvider>
+      </ToastProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")

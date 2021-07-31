@@ -1,14 +1,3 @@
-:root {
-  --modal-bg-color: rgba(0, 0, 0, 0.3);
-  --m-border-color: rgba(255, 255, 255, 0.1);
-  --ch-blue: #1a0dab;
-  --c-padding: 1rem;
-  --m-text-size: 1.2rem;
-  --n-font-size: 1rem;
-  --ch-size: 1.5rem;
-  --h-margin: 0.5rem;
-  --z-index-two: 2;
-}
 .modal {
   position: fixed;
   top: 0;
@@ -24,7 +13,7 @@
 
   font-family: var(--primary-font);
 
-  z-index: var(--z-index-two);
+  z-index: var(--z-index-three);
 }
 
 .modal__dialog {
@@ -39,6 +28,14 @@
 .modal__top {
   display: flex;
   justify-content: space-between;
+
+  border-bottom: 1px solid var(--m-border-color);
+}
+
+.modal__icon {
+  font-size: var(--u-1p7);
+
+  color: var(--mi-color);
 }
 
 .modal__title {
@@ -46,7 +43,7 @@
 
   color: var(--c-white);
 
-  margin-left: var(--c-margin);
+  margin-left: var(--u-1);
 }
 
 .modal__close-btn {
@@ -60,7 +57,7 @@
 
   margin: 0;
 
-  margin-right: var(--c-margin);
+  margin-right: var(--u-1);
 
   outline-width: 0;
 
@@ -68,7 +65,8 @@
 }
 
 .modal__content {
-  padding: var(--c-padding);
+  padding: var(--u-1);
+
   border-top: 1px solid var(--m-border-color);
   border-bottom: 1px solid var(--m-border-color);
 }
@@ -85,96 +83,44 @@
   text-decoration: none;
 }
 
+.modal__txt--empty {
+  color: var(--c-white);
+
+  margin: var(--u-1);
+
+  font-size: var(--u-1);
+}
+
 .m-item {
   display: flex;
   align-items: center;
-  margin-bottom: var(--c-margin);
+
+  margin-bottom: var(--u-1);
 }
 
-.modal__playlist-create-btn {
+.modal__btn--add {
   display: flex;
+  align-items: center;
+
   border: 0;
   outline-width: 0;
-  padding: var(--c-padding);
+
+  padding: var(--u-1);
+
   color: var(--c-white);
   background-color: transparent;
+
   min-width: 100%;
+
   cursor: pointer;
+
+  border-top: 1px solid var(--m-border-color);
 }
 
 .btn-text {
-  margin-left: var(--c-margin);
-  font-size: var(--n-font-size);
-}
+  margin-left: var(--u-1);
 
-.modal__playlist-create {
-  display: flex;
-  flex-direction: column;
-  padding: var(--c-padding);
-}
-
-.modal__playlist-name {
-  color: var(--c-white);
-  margin-bottom: var(--h-margin);
-}
-
-.modal__playlist-name__field {
-  border: 0;
-  border-bottom: 1px solid var(--c-white);
-  background-color: transparent;
-  margin-bottom: var(--c-margin);
-  /* font-size: var(--n-font-size); */
-  font-size: 1rem;
-  outline-width: 0;
-  color: var(--c-white);
-}
-
-.modal__playlist-create__create-btn {
-  align-self: flex-end;
-  max-width: 40%;
-  background-color: transparent;
-  color: var(--c-white);
-  border: 0;
-  outline-width: 0;
-  font-size: var(--n-font-size);
-  padding: 0;
-  font-size: var(--m-text-size);
-  font-weight: 500;
-}
-
-/* checkbox */
-.checkbox__text {
-  color: var(--c-white);
-  font-size: var(--m-text-size);
-  margin-left: var(--c-margin);
-  font-weight: 300;
-}
-
-input[type="checkbox"] {
-  appearance: none;
-  -webkit-appearance: none;
-  height: var(--ch-size);
-  width: var(--ch-size);
-  background-color: var(--m-black);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 3px solid var(--m-border-color);
-  border-radius: 0.3rem;
-}
-
-input[type="checkbox"]:after {
-  content: url("../../assets/svgs/check.svg");
-  display: none;
-}
-
-input[type="checkbox"]:checked {
-  background-color: var(--ch-blue);
-}
-
-input[type="checkbox"]:checked:after {
-  display: block;
+  font-size: var(--u-1);
 }
 
 @media screen and (min-width: 568px) {

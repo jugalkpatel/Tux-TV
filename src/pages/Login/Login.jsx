@@ -1,56 +1,29 @@
-import React, { useReducer } from "react";
+import { useReducer } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import "./Login.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-import { useAuth } from "../../contexts/AuthProvider";
 import { loginReducer } from "./loginReducer";
-import { validateLoginCredentials } from "../../utils/validateCredentials";
-import { postAPI } from "../../utils/postAPI";
+import { AuthButton } from "../../components";
 
 const Login = () => {
   const { state } = useLocation();
   const path = state?.from || "/";
-  const details = state?.details || "";
-
-  const { setupAuth } = useAuth();
+  const details = state?.data || "";
 
   const initialLoginData = { email: "", password: "", showPassword: false };
 
-  const [loginData, dispathLoginData] = useReducer(
+  const [loginData, dispatchLoginData] = useReducer(
     loginReducer,
     initialLoginData
   );
 
   const handleShowPassword = (e) => {
     e.preventDefault();
-    dispathLoginData({
+    dispatchLoginData({
       type: "SHOW_PASSWORD",
     });
-  };
-
-  const onLoginClick = async (e) => {
-    e.preventDefault();
-    const { email, password, confirmPassword } = loginData;
-    if (
-      !validateLoginCredentials(email, password) &&
-      password !== confirmPassword
-    ) {
-      // TODO: SHOW INVALID CREDENTIALS TOAST
-      console.log("invalid credentials");
-      return;
-    }
-
-    const { data, status } = await postAPI("http://localhost:8080/user/login", {
-      email,
-      password,
-    });
-
-    if (status === 201) {
-      const { id, token } = data;
-      setupAuth(id, token, path, details);
-    }
   };
 
   return (
@@ -66,7 +39,7 @@ const Login = () => {
           placeholder="Enter Email"
           pattern="[^@]+@[^@]+\.[a-zA-Z]{2,}"
           onChange={(e) =>
-            dispathLoginData({
+            dispatchLoginData({
               type: "UPDATE_EMAIL",
               payload: { data: e.target.value },
             })
@@ -87,7 +60,7 @@ const Login = () => {
             pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
             value={loginData.password}
             onChange={(e) =>
-              dispathLoginData({
+              dispatchLoginData({
                 type: "UPDATE_PASSWORD",
                 payload: { data: e.target.value },
               })
@@ -110,16 +83,36 @@ const Login = () => {
         </div>
 
         <div className="wrapper--actions">
-          <button
-            type="submit"
-            className="login__btn--login"
-            onClick={onLoginClick}
-          >
-            Login
-          </button>
+          <AuthButton
+            data={{
+              btnText: "Login",
+              btnType: "LOGIN",
+              btnClass: "login__btn--login",
+              email: loginData.email,
+              password: loginData.password,
+              path,
+              details,
+            }}
+          />
+
           <Link to="/signup" className="login__btn--signup">
             Sign Up
           </Link>
+        </div>
+
+        <div className="wrapper--asguest">
+          <AuthButton
+            data={{
+              btnText: "Login as a guest",
+              btnType: "LOGIN",
+              btnClass: "login__btn--asguest",
+              ldColor: "#FFD14A",
+              email: "guest@gmail.com",
+              password: "guest1234",
+              path,
+              details,
+            }}
+          />
         </div>
       </form>
     </div>

@@ -1,18 +1,10 @@
-:root {
-  --p-white: #ffffff;
-  --h-padding: 0.5rem;
-  --h-margin: 0.5rem;
-  --t-radius: 0.1rem;
-  --i-green: #3bb54a;
-}
-
 .login {
   font-family: var(--primary-font);
-  color: var(--p-white);
+  color: var(--c-white);
 }
 
 .login__main {
-  padding: 1rem;
+  padding: var(--u-1);
 
   display: flex;
   flex-direction: column;
@@ -20,20 +12,20 @@
 
 .login__label--email,
 .login__label--password {
-  margin: var(--h-margin) 0;
+  margin: var(--u-p5) 0;
 }
 
 .login__input--email,
 .login__input--password {
-  padding: var(--h-padding);
+  padding: var(--u-p5);
 
-  outline-color: var(--p-white);
+  outline-color: var(--c-white);
 
   border: 0;
 }
 
 .login__input--email {
-  margin-bottom: var(--h-margin);
+  margin-bottom: var(--u-p5);
 }
 
 .login__input--password {
@@ -52,21 +44,21 @@
 
 .wrapper--password {
   display: grid;
-  grid-template-columns: auto 2rem;
+  grid-template-columns: auto var(--u-2);
   justify-items: center;
   align-items: center;
 
-  margin-bottom: var(--h-margin);
+  margin-bottom: var(--u-p5);
 
-  background-color: var(--p-white);
+  background-color: var(--c-white);
 
-  border-radius: var(--t-radius);
+  border-radius: var(--u-p1);
 }
 
 .login__btn--showpassword {
   border: 0;
 
-  background-color: var(--p-white);
+  background-color: var(--c-white);
 
   padding: 0;
 
@@ -79,7 +71,7 @@
 .wrapper--forgetpassword {
   display: grid;
 
-  margin: var(--h-margin) 0;
+  margin: var(--u-p5) 0;
 }
 
 .login__btn--fpassword {
@@ -89,7 +81,7 @@
 
   color: var(--l-yellow);
 
-  font-size: 0.8rem;
+  font-size: var(--u-p8);
 }
 
 .wrapper--actions {
@@ -97,30 +89,35 @@
 
   grid-template-columns: 3fr 1fr;
 
-  margin-top: 1.5rem;
+  margin-top: var(--u-1p5);
 
-  gap: 0.5rem;
+  gap: var(--u-p5);
 }
 
 .login__btn--login,
-.login__btn--signup {
+.login__btn--signup,
+.login__btn--asguest {
   display: flex;
   justify-content: center;
   align-items: center;
 
   background-color: var(--l-yellow);
 
-  border-radius: var(--t-radius);
+  border-radius: var(--u-p1);
 
   border-color: var(--l-yellow);
 
   font-weight: 600;
 
-  padding: var(--h-padding);
+  padding: var(--u-p5);
 
   border: 0;
 
   text-decoration: none;
+
+  font-size: var(--u-1);
+
+  cursor: pointer;
 }
 
 .login__btn--signup {
@@ -129,6 +126,15 @@
   color: var(--l-yellow);
 
   border: 1px solid var(--l-yellow);
+}
+
+.login__btn--asguest {
+  background-color: transparent;
+  color: var(--l-yellow);
+
+  margin: 1rem auto;
+
+  font-weight: 300;
 }
 
 @media screen and (min-width: 568px) {
@@ -140,25 +146,31 @@
 
 @media screen and (min-width: 768px) {
   .login__main {
-    padding-top: 4rem;
+    padding-top: var(--u-4);
   }
 
   .login__title {
-    font-size: 2rem;
+    font-size: var(--u-2);
   }
 
   .login__label--email,
   .login__label--password {
-    font-size: 1.3rem;
+    font-size: var(--u-1p3);
   }
 
   .login__input--password,
   .login__input--email {
-    padding: 0.7rem;
+    padding: var(--u-p7);
   }
 
   .login__btn--login,
   .login__btn--signup {
-    padding: 0.7rem;
+    padding: var(--u-p7);
+  }
+
+  .login__btn--asguest:hover {
+    text-decoration: underline;
+
+    text-decoration-color: var(--l-yellow);
   }
 }

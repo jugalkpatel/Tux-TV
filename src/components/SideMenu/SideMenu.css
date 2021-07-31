@@ -1,0 +1,111 @@
+.sidemenu__util {
+  display: none;
+  width: 100vw;
+
+  height: 100vh;
+
+  position: fixed;
+
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+  z-index: var(--z-index-four);
+}
+
+.sidemenu {
+  display: none;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  background-color: var(--nav-background-color);
+
+  width: 50vw;
+
+  height: 100vh;
+
+  z-index: var(--z-index-five);
+
+  color: var(--c-white);
+}
+
+.u-list {
+  margin: 0;
+
+  padding: 0;
+
+  list-style-type: none;
+
+  font-family: var(--primary-font);
+}
+
+.u-item {
+  display: block;
+
+  border-bottom: 1px solid var(--m-border-color);
+}
+
+.s-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidemenu__account,
+.sidemenu__profile {
+  padding: var(--u-p5) var(--u-1);
+
+  font-size: var(--u-p8);
+
+  color: var(--l-gray);
+}
+
+.sidemenu__btn--login,
+.sidemenu__btn--signup,
+.sidemenu__btn--playlists,
+.sidemenu__btn--saves,
+.sidemenu__btn--logout {
+  text-decoration: none;
+
+  color: var(--c-white);
+
+  padding: var(--u-1);
+}
+
+.sidemenu__btn--close {
+  width: 100%;
+
+  height: 100%;
+
+  background-color: transparent;
+
+  border: 0;
+
+  text-align: left;
+
+  padding: var(--u-1);
+
+  color: var(--c-white);
+
+  font-size: var(--u-1);
+}
+
+@media screen and (min-width: 568px) {
+  .sidemenu {
+    width: 35vw;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .sidemenu {
+    width: 30vw;
+  }
+}
+
+@media screen and (min-width: 991px) {
+  .sidemenu {
+    display: none;
+  }
+}

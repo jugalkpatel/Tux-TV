@@ -1,0 +1,60 @@
+.ct {
+  position: relative;
+
+  cursor: pointer;
+}
+
+.ct__main {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: var(--u-11) auto;
+}
+
+.ct__img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.ct__title {
+  margin: 0;
+
+  margin-bottom: var(--u-p5);
+
+  font-size: var(--u-1);
+}
+
+.ct__content {
+  margin: var(--u-p5) 0;
+}
+
+.ct__tray {
+  position: absolute;
+
+  right: 0;
+  top: 0;
+}
+
+.ct__tray {
+  display: flex;
+  flex-direction: column;
+
+  width: fit-content;
+  height: fit-content;
+}
+
+.ct__btn--playlist,
+.ct__btn--save {
+  background-color: var(--o-color);
+
+  border: 1px solid var(--o-color);
+
+  border-radius: 3px;
+
+  margin: var(--u-p3);
+
+  padding: var(--u-p3);
+
+  color: var(--c-white);
+}

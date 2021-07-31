@@ -1,16 +1,17 @@
 import React from "react";
 import { Route, Navigate, useLocation } from "react-router-dom";
-import { useAuth } from "../contexts/AuthProvider";
+import { useAuth } from "../contexts";
+
 const PrivateRoute = ({ path, ...props }) => {
-  const { token } = useAuth();
+  const { token, userID } = useAuth();
   const { state } = useLocation();
-  return token ? (
+  return token && userID ? (
     <Route path={path} {...props} />
   ) : (
     <Navigate
       to="/login"
       replace
-      state={{ from: path || "/", details: state.data }}
+      state={{ from: path || "/", data: state?.data ? state.data : null }}
     />
   );
 };

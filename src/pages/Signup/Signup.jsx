@@ -1,18 +1,25 @@
-import React, { useReducer } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useReducer } from "react";
+import { Link } from "react-router-dom";
 
 import "./Signup.css";
-
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 import { signUpReducer } from "./signUpReducer";
-import { postAPI } from "../../utils/postAPI";
-import { validateSignUpCredentials } from "../../utils/validateCredentials";
+import { AuthButton } from "../../components";
 
 const Signup = () => {
-  const navigate = useNavigate();
+  const initialSignUpData = {
+    userName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    showPassword: false,
+  };
 
-  const initialSignUpData = { userName: "", email: "", password: "", confirmPassword: "", showPassword: false};
-  const [signupData, dispathSignUpData] = useReducer(signUpReducer, initialSignUpData);
+  const [signupData, dispathSignUpData] = useReducer(
+    signUpReducer,
+    initialSignUpData
+  );
 
   const handleShowPassword = (e) => {
     e.preventDefault();
@@ -20,32 +27,6 @@ const Signup = () => {
       type: "SHOW_PASSWORD",
     });
   };
-
-  const onSignUpClick = async (e) => {
-    e.preventDefault();
-    const { userName, email, password, confirmPassword } = signupData;
-    if (
-      !validateSignUpCredentials(userName, email, password) ||
-      password !== confirmPassword
-    ) {
-      // TODO: SHOW TOAST FOR INVALID CREDENTIALS
-      console.log("invalid credentials");
-      return;
-    }
-
-    const { status } = await postAPI("http://localhost:8080/user/register", {
-      name: userName,
-      email: email,
-      password: password,
-    });
-
-    if (status === 201) {
-      navigate("/login");
-      return;
-    }
-  };
-
-  console.log({ signupData });
 
   return (
     <div className="signup">
@@ -145,13 +126,18 @@ const Signup = () => {
         </div>
 
         <div className="wrapper--actions">
-          <button
-            type="submit"
-            className="signup__btn--signup"
-            onClick={onSignUpClick}
-          >
-            Sign Up
-          </button>
+          <AuthButton
+            data={{
+              btnText: "Sign up",
+              btnType: "SIGNUP",
+              btnClass: "signup__btn--signup",
+              userName: signupData.userName,
+              email: signupData.email,
+              password: signupData.password,
+              confirmPassword: signupData.confirmPassword,
+            }}
+          />
+
           <Link to="/login" className="signup__btn--login">
             Login
           </Link>

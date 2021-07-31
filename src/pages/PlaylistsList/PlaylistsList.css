@@ -1,0 +1,35 @@
+.playlists {
+  font-family: var(--primary-font);
+  color: var(--c-white);
+
+  padding: var(--u-1);
+}
+
+.pl__icon {
+  font-size: var(--u-2);
+}
+
+.pl__title {
+  display: flex;
+
+  align-items: center;
+}
+
+.pl__title__text {
+  margin-left: var(--u-p5);
+}
+
+.pl__main {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, var(--u-13));
+  gap: var(--u-1);
+
+  justify-content: center;
+}
+
+@media screen and (min-width: 568px) {
+  .pl__main {
+    gap: var(--u-2);
+  }
+}

@@ -1,88 +1,90 @@
-import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./VideoCard.css";
-import showmore from "../../assets/svgs/showmore.svg";
-import { ImBookmark } from "react-icons/im";
-import { RiPlayListAddLine } from "react-icons/ri";
+import { GoKebabVertical } from "react-icons/go";
+import { FaBookmark, FaRegBookmark } from "react-icons/fa";
+import { RiPlayListAddFill } from "react-icons/ri";
 
-import { useAuth } from "../../contexts/AuthProvider";
+import { PlaylistButton } from "..";
+import { SaveButton } from "..";
+import { MobileMenu } from "./MobileMenu";
 
 const VideoCard = ({ ...video }) => {
-  const { thumbnail_src, title, snippet } = video;
-  const { handleAPICalls } = useAuth();
-  let navigate = useNavigate();
-  const [showmenu, setShowMenu] = useState(false);
-  return (
-    <>
-      <div
-        className="video-card"
-        onClick={() => console.log("clicked on videocard")}
-      >
-        <div className="video-card__thumbnail">
-          <img src={thumbnail_src} className="r-img" alt="thumbnail" />
-        </div>
-        <div className="h-container">
-          <span className="video-card__title">{title}</span>
-          <div className="v-container">
-            <button
-              className="video-card__showmore"
-              onClick={() => setShowMenu((prevState) => !prevState)}
-            >
-              <img src={showmore} alt="show_more" />
-            </button>
-            <div
-              className="video-card__menu"
-              style={{ visibility: showmenu ? "visible" : "hidden" }}
-            >
-              <div className="video-card__menu__dialog">
-                <button
-                  className="video-card__btn"
-                  onClick={() => {
-                    setShowMenu(false);
-                    navigate(`/modal`, {
-                      state: { data: video },
-                    });
-                  }}
-                >
-                  Add to playlist
-                </button>
+  const { id, thumbnail_src, title } = video;
 
-                <button className="video-card__btn">Saved</button>
-                <button
-                  className="video-card__btn"
-                  onClick={() => setShowMenu(false)}
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-            <section className="o-container">
-              <p className="video-card__snippet">{snippet}</p>
-              <section className="video-card__btns">
-                <button
-                  className="video-card__save-btn"
-                  // onClick={
-                  //   token ? () => console.log("save btn") : navigate("/login")
-                  // }
-                >
-                  <ImBookmark />
-                  <span className="video-card__btn__text">SAVE</span>
-                </button>
-                <button
-                  className="video-card__playlist-btn"
-                  onClick={() => navigate("/modal", { state: { data: video } })}
-                >
-                  <RiPlayListAddLine />
-                  <span className="video-card__btn__text">PLAYLIST </span>
-                </button>
-              </section>
-            </section>
-          </div>
-        </div>
-      </div>
-    </>
+  const [showMenu, setShowMenu] = useState(false);
+
+  const navigate = useNavigate();
+  return (
+    <div className="vcard">
+      <article
+        className="vcard__main"
+        onClick={() =>
+          navigate(`/video/${title}`, {
+            state: { fromVideoCard: true, data: video },
+          })
+        }
+      >
+        <section
+          className="vcard__thumbnail"
+          style={{ backgroundImage: `url(${thumbnail_src})` }}
+        ></section>
+        <section className="vcard__content">
+          <h4 className="vcard__title text-truncate">{title}</h4>
+          <button
+            className="vcard__btn--showmore"
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowMenu((prevState) => !prevState);
+            }}
+          >
+            <GoKebabVertical className="vcard__icon" />
+          </button>
+        </section>
+      </article>
+
+      <MobileMenu showMenu={showMenu} setShowMenu={setShowMenu}>
+        <SaveButton
+          data={{
+            btnClass: "vcard__menu__btn--save",
+            id,
+            btnText: "Save",
+            btnTextClass: "vcard__menu__btn--text",
+          }}
+        />
+
+        <PlaylistButton
+          data={{
+            btnClass: "vcard__menu__btn--playlist",
+            video,
+            btnText: "Add to Playlist",
+            btnTextClass: "vcard__menu__btn--text",
+          }}
+        />
+      </MobileMenu>
+
+      <article className="vcard__overlay">
+        <section className="vcard__overlay__btns">
+          <SaveButton
+            data={{
+              btnClass: "vcard__overlay__btn--save",
+              id,
+              svgSaved: <FaBookmark className="vcard__overlay__icon" />,
+              svgNotSaved: <FaRegBookmark className="vcard__overlay__icon" />,
+            }}
+          />
+
+          <PlaylistButton
+            data={{
+              btnClass: "vcard__overlay__btn--playlist",
+              video,
+              svg: <RiPlayListAddFill className="vcard__overlay__icon" />,
+            }}
+          />
+        </section>
+      </article>
+    </div>
   );
 };
 
