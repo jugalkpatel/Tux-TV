@@ -60,16 +60,16 @@ const VideoTile = ({ ...video }) => {
 
         <section className="vtile__saves">
           {isLoggedIn ? (
-            <div className="vtile__saves--videos">
-              <h2 className="vtile__saves__title">My Saves</h2>
-              <section className="scrollable-list__videos">
-                {saves.length
-                  ? saves.map((video) => {
-                      return <VideoCard key={video.id} {...video} />;
-                    })
-                  : null}
-              </section>
-            </div>
+            saves.length ? (
+              <div className="vtile__saves--videos">
+                <h2 className="vitle__saves__title">My Saves</h2>
+                <section className="scrollable-list__videos">
+                  {saves.map((video) => {
+                    return <VideoCard key={video.id} {...video} />;
+                  })}
+                </section>
+              </div>
+            ) : null
           ) : (
             <div className="vtile__saves--notloggedin">
               <h1 className="vtile__snippet">

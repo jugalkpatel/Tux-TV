@@ -2,7 +2,7 @@
   position: relative;
   font-family: var(--primary-font);
 
-  min-height: var(--u-58);
+  min-height: var(--u-56);
 }
 
 .vtile__back {
@@ -50,7 +50,7 @@
 .vtile__title {
   color: var(--c-white);
 
-  margin: 0 0 1rem 0;
+  margin: 0 0 var(--u-1) 0;
 
   font-size: var(--u-2p3);
   font-weight: 700;
@@ -143,10 +143,6 @@
   text-align: center;
 }
 
-.vtile__snippet {
-  font-size: 1.5rem;
-}
-
 .vtile__btn--signin {
   margin: 0 auto;
 }
@@ -155,11 +151,13 @@
   margin: 0;
 }
 
-@media screen and (min-width: 568px) {
+@media screen and (max-width: 370px) {
   .vtile {
-    min-height: var(--u-60);
+    min-height: var(--u-65);
   }
+}
 
+@media screen and (min-width: 568px) {
   .vtile__front {
     display: flex;
     flex-direction: column;
@@ -170,17 +168,25 @@
   }
 
   .vtile__saves--notloggedin {
-    margin: var(--u-6) 0;
+    margin: var(--u-1) 0;
+  }
+
+  .vtile__snippet {
+    font-size: 1.5rem;
   }
 }
 
 @media screen and (min-width: 768px) {
+  .vtile {
+    min-height: var(--u-45);
+  }
+
   .vtile__title {
     font-size: var(--u-3p3);
   }
 
   .vtile__saves--notloggedin {
-    margin: var(--u-8) 0;
+    margin: var(--u-2) 0;
   }
 }
 
@@ -190,7 +196,7 @@
   }
 
   .vtile__front__dialog {
-    margin: var(--u-4) var(--u-2);
+    margin: var(--u-3) var(--u-2);
   }
 
   .vtile__saves {
@@ -198,6 +204,6 @@
   }
 
   .vtile__saves--notloggedin {
-    margin: var(--u-9) 0;
+    margin: var(--u-3) 0;
   }
 }
