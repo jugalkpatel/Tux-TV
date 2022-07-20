@@ -178,7 +178,7 @@
 
 @media screen and (min-width: 768px) {
   .vtile {
-    min-height: var(--u-45);
+    min-height: 50rem;
   }
 
   .vtile__title {
