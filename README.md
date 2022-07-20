@@ -1,4 +1,5 @@
-# Tux-TV
-Video Library App Built using MongoDB, Express, React, Node.
+# Tux TV Backend
 
-https://tuxtv.herokuapp.com/
+Backend for [Tux TV](https://github.com/jugalkpatel/Tux-TV/tree/development--frontend) Built using MongoDB, Express, React, Node.
+
+Deployed: https://tuxtv.herokuapp.com/
