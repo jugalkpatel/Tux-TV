@@ -10,7 +10,6 @@ import { useAuth, useData } from "../../contexts";
 import { SideMenu } from "..";
 
 const Redirect = ({ count, callback, text }) => {
-  console.log(count);
   return (
     <div className="redirect__saves" onClick={callback}>
       {count ? <span className="redirect__saves__count">{count}</span> : null}
