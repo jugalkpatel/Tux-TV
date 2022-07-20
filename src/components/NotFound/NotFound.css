@@ -1,0 +1,45 @@
+.nf__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 70vh;
+
+  font-family: var(--primary-font);
+
+  padding: var(--u-2) var(--u-1);
+}
+
+.nf__hero {
+  width: 80vw;
+
+  max-height: 40vh;
+}
+
+.nf__text {
+  color: var(--c-white);
+}
+
+.nf__img {
+  width: 100%;
+  height: 100%;
+}
+
+.nf__btn--back {
+  color: var(--c-black);
+
+  background-color: var(--l-yellow);
+
+  border: 0;
+
+  font-size: var(--u-1);
+
+  padding: var(--u-1);
+
+  font-weight: 600;
+
+  text-decoration: none;
+
+  cursor: pointer;
+}

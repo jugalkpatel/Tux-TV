@@ -1,0 +1,98 @@
+.profile {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  color: var(--c-white);
+
+  font-family: var(--primary-font);
+
+  width: 100vw;
+  height: 60vh;
+}
+
+.profile__content {
+  display: flex;
+
+  flex-direction: column;
+
+  width: 95vw;
+
+  padding: var(--u-1);
+
+  border: 1px solid var(--c-white);
+}
+
+.profile__icon {
+  font-size: var(--u-3);
+  color: var(--c-white);
+}
+
+.profile__info {
+  display: flex;
+
+  align-items: center;
+}
+
+.profile__uname {
+  margin-left: var(--u-1);
+
+  font-size: var(--u-1p5);
+}
+
+.profile__btns {
+  display: flex;
+
+  flex-direction: column;
+
+  margin-top: var(--u-1);
+}
+
+.profile__btn--playlists,
+.profile__btn--saves,
+.profile__btn--logout {
+  font-size: var(--u-1);
+  padding: var(--u-1);
+
+  display: flex;
+
+  justify-content: space-between;
+
+  font-family: var(--primary-font);
+
+  cursor: pointer;
+
+  text-decoration: none;
+
+  color: var(--c-black);
+
+  background-color: var(--l-yellow);
+
+  font-weight: 600;
+}
+
+.profile__btn--playlists,
+.profile__btn--saves {
+  border: 1px solid var(--c-black);
+}
+
+.profile__btn--logout {
+  margin-top: var(--u-2);
+
+  padding: var(--u-p7) var(--u-1);
+
+  background-color: var(--c-red);
+
+  border: 0;
+
+  color: var(--c-white);
+
+  justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+  .profile__content {
+    width: 50vw;
+  }
+}
