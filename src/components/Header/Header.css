@@ -155,6 +155,27 @@
   text-decoration: none;
 }
 
+.redirect__saves {
+  display: flex;
+  position: relative;
+  cursor: pointer;
+}
+
+.redirect__saves__count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.5rem;
+  position: absolute;
+  top: 0.2rem;
+  right: 0;
+  background-color: var(--l-yellow);
+  color: var(--c-black);
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+}
+
 /* for search: under refactor */
 
 /* @media screen and (min-width: 568px) {
