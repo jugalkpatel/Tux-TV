@@ -6,13 +6,24 @@ import tux_flat from "../../assets/svgs/TuxFlat.svg";
 // import search from "../../assets/svgs/search.svg";
 import menu from "../../assets/svgs/menu.svg";
 import profile from "../../assets/svgs/profile.svg";
-import { useAuth } from "../../contexts";
+import { useAuth, useData } from "../../contexts";
 import { SideMenu } from "..";
+
+const Redirect = ({ count, callback, text }) => {
+  console.log(count);
+  return (
+    <div className="redirect__saves" onClick={callback}>
+      {count ? <span className="redirect__saves__count">{count}</span> : null}
+      <span className="nav__featured__text">{text}</span>
+    </div>
+  );
+};
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
   const { name, isLoggedIn } = useAuth();
+  const { saves, playlists } = useData();
   return (
     <>
       <div className="nav">
@@ -34,14 +45,18 @@ const Header = () => {
           <div className="nav__featured">
             <ul className="c-list">
               <li className="c-item">
-                <Link to="/saves" className="nav__featured__text">
-                  Saves
-                </Link>
+                <Redirect
+                  count={saves.length ? saves.length : null}
+                  callback={() => navigate("/saves")}
+                  text="Saves"
+                />
               </li>
               <li className="c-item">
-                <Link to="/playlists" className="nav__featured__text">
-                  Playlists
-                </Link>
+                <Redirect
+                  count={playlists.length ? playlists.length : null}
+                  callback={() => navigate("/playlists")}
+                  text="Playlists"
+                />
               </li>
             </ul>
           </div>
