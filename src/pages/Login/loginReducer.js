@@ -6,6 +6,8 @@ const loginReducer = (state, { type, payload }) => {
       return { ...state, password: payload.data };
     case "SHOW_PASSWORD":
       return { ...state, showPassword: !state.showPassword };
+    case "SUBMIT":
+      return { ...state, submitting: true };
     default:
       return state;
   }

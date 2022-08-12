@@ -6,8 +6,7 @@ import { IoMdClose } from "react-icons/io";
 import { AiOutlinePlus } from "react-icons/ai";
 
 import { useData } from "../../contexts";
-import { CheckBox } from "..";
-import { CreatePlaylist } from "..";
+import { CheckBox, CreatePlaylist } from "../../components";
 
 const Modal = () => {
   const navigate = useNavigate();

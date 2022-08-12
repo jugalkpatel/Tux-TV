@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./PlaylistCard.css";
 import Loader from "react-loader-spinner";
@@ -10,11 +10,15 @@ import { postAPI } from "../../utils/postAPI";
 const PlaylistMenu = ({ menu, playlist }) => {
   const { REMOVE_PLAYLIST } = actions;
   const { showMenu, setShowMenu } = menu;
-  const { id } = playlist;
+  const { id, title } = playlist;
   const { userID } = useAuth();
   const { dispatchData } = useData();
-  const { setupToast } = useToast();
+  const { addToast } = useToast();
   const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    return () => setLoading(false);
+  }, []);
 
   const onPlaylistRemoveClick = async () => {
     setLoading(true);
@@ -30,8 +34,9 @@ const PlaylistMenu = ({ menu, playlist }) => {
       if (status === 201) {
         setShowMenu(false);
         dispatchData({ type: REMOVE_PLAYLIST, payload: { ...data } });
+        addToast(`${title} Removed`);
       } else {
-        setupToast("error while removing playlist....");
+        addToast("error while removing playlist....", "error");
       }
     }
   };

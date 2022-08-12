@@ -20,3 +20,5 @@ export { Spinner } from "./Spinner/Spinner";
 export { Toast } from "./Toast/Toast";
 export { VideoCard } from "./VideoCard/VideoCard";
 export { VideoTile } from "./VideoTile/VideoTile";
+export { default as ToastsPortal } from "./ToastsPortal";
+export { default as ToastContainer } from "./ToastContainer/ToastContainer";

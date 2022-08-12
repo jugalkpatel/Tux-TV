@@ -49,6 +49,18 @@
   outline: 2px solid var(--i-green);
 }
 
+.signup__input--uname:not(:placeholder-shown):invalid {
+  outline: 2px solid var(--c-red);
+}
+
+.signup__input--password:not(:placeholder-shown):invalid {
+  outline: 2px solid var(--c-red);
+}
+
+.signup__input--email:not(:placeholder-shown):invalid {
+  outline: 2px solid var(--c-red);
+}
+
 .wrapper--password {
   display: grid;
   grid-template-columns: auto var(--u-2);

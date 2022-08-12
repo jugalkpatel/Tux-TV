@@ -21,13 +21,15 @@
 
   background-color: transparent;
 
-  margin-bottom: var(--u-1);
+  /* margin-bottom: var(--u-1); */
 
   font-size: var(--u-1);
 
   color: var(--c-white);
 
   outline-width: 0;
+  line-height: 0.5rem;
+  padding: 0 0 0.5rem 0;
 }
 
 .cp__btn--create {
@@ -35,8 +37,10 @@
 
   max-width: 40%;
 
-  background-color: transparent;
-  color: var(--mb-sky);
+  /* background-color: transparent; */
+  background-color: var(--l-yellow);
+  padding: var(--u-p7) var(--u-1);
+  color: var(--m-black);
 
   border: 0;
 
@@ -45,9 +49,16 @@
   font-size: var(--u-1);
   font-weight: 600;
 
-  padding: 0;
-
   margin-top: var(--u-p5);
 
   cursor: pointer;
+}
+
+.cp__label--error {
+  color: var(--c-red);
+
+  margin-top: var(--u-p5);
+  margin-bottom: var(--u-p5);
+
+  font-size: var(--u-p9);
 }

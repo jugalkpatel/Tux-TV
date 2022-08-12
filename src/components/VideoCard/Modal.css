@@ -94,8 +94,10 @@
 .m-item {
   display: flex;
   align-items: center;
+}
 
-  margin-bottom: var(--u-1);
+.m-item:not(:first-child) {
+  margin-top: var(--u-1);
 }
 
 .modal__btn--add {

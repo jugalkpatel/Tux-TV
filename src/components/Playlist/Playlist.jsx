@@ -27,7 +27,12 @@ const Playlist = () => {
         <section className="playlist__main">
           {videos.map((video) => {
             return (
-              <PlayListTile key={video.id} playlistID={id} video={video} />
+              <PlayListTile
+                key={video.id}
+                playlistID={id}
+                video={video}
+                playlistTitle={playlist.title}
+              />
             );
           })}
         </section>

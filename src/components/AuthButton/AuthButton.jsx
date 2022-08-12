@@ -1,24 +1,32 @@
+import { useState, useEffect } from "react";
 import Loader from "react-loader-spinner";
 
-import { useState } from "react";
 import { postAPI } from "../../utils/postAPI";
 import { useSetupAuth } from "../../hooks/useSetupAuth";
-import { useToast } from "../../contexts";
-import { useAuth } from "../../contexts";
+import { useToast, useAuth } from "../../contexts";
 import {
   validateLoginCredentials,
   validateSignUpCredentials,
 } from "../../utils/validateCredentials";
 
 const AuthButton = ({ data }) => {
-  const { btnText, btnType, btnClass, ldColor, ...rest } = data;
+  const { btnText, btnType, btnClass, ldColor, callback, submitting, ...rest } =
+    data;
   const [isLoading, setLoading] = useState(false);
-  const { setupToast } = useToast();
+  const { addToast } = useToast();
   const { dispatchUserData } = useAuth();
   const setupAuth = useSetupAuth(dispatchUserData);
 
+  useEffect(() => {
+    return () => setLoading(false);
+  }, []);
+
   const onLoginClick = async (e) => {
     e.preventDefault();
+
+    if (callback) {
+      callback();
+    }
 
     setLoading(true);
 
@@ -26,7 +34,7 @@ const AuthButton = ({ data }) => {
       const { email, password, path, details } = rest;
 
       if (!validateLoginCredentials(email, password)) {
-        setupToast("Invalid Login Credentials");
+        addToast("Invalid Login Credentials", "error");
         setLoading(false);
         return;
       }
@@ -47,11 +55,11 @@ const AuthButton = ({ data }) => {
       }
 
       if (status === 404) {
-        setupToast("You're not Registered! Please Signup");
+        addToast("You're not Registered! Please Signup", "error");
       } else if (status === 403) {
-        setupToast("Invalid User Name or Password");
+        addToast("Invalid User Name or Password", "error");
       } else {
-        setupToast("Someting went wrong....");
+        addToast("Someting went wrong....", "error");
       }
 
       setLoading(false);
@@ -70,7 +78,7 @@ const AuthButton = ({ data }) => {
         !validateSignUpCredentials(userName, email, password) ||
         password !== confirmPassword
       ) {
-        setupToast("Invalid Credentials");
+        addToast("Invalid Credentials", "error");
         setLoading(false);
         return;
       }
@@ -86,7 +94,7 @@ const AuthButton = ({ data }) => {
         localStorage?.setItem("ttv", JSON.stringify({ token, id, name }));
         setupAuth({ token, id, name, path: "/", data: null });
       } else {
-        setupToast("failed to signup....");
+        addToast("failed to signup....", "error");
       }
 
       setLoading(false);
@@ -97,7 +105,12 @@ const AuthButton = ({ data }) => {
 
   return (
     <>
-      <button type="submit" className={btnClass} onClick={handleClick}>
+      <button
+        type="submit"
+        className={btnClass}
+        onClick={handleClick}
+        disabled={submitting ? true : false}
+      >
         {isLoading ? (
           <Loader
             type="Bars"
