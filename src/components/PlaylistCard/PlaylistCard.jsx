@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./PlaylistCard.css";
@@ -14,6 +14,10 @@ const PlaylistCard = ({ ...playlist }) => {
   const { id, title, videos } = playlist;
 
   const [showMenu, setShowMenu] = useState(false);
+
+  useEffect(() => {
+    return () => setShowMenu(false);
+  }, []);
 
   const length = videos.length || 0;
   const navigate = useNavigate();
@@ -49,7 +53,10 @@ const PlaylistCard = ({ ...playlist }) => {
         >
           <GoKebabVertical className="pc__icon" />
         </button>
-        <PlaylistMenu menu={{ showMenu, setShowMenu }} playlist={{ id }} />
+        <PlaylistMenu
+          menu={{ showMenu, setShowMenu }}
+          playlist={{ id, title }}
+        />
       </section>
     </div>
   );

@@ -1,45 +1,50 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
-
-import { toastReducer } from "./toastReducer";
-import { actions } from "../../utils/actions";
+import { createContext, useCallback, useContext, useReducer } from "react";
+import { actions, getId } from "../../utils";
 
 const ToastContext = createContext();
 
-const ToastProvider = ({ children }) => {
-  const initialState = {
-    toastMsg: "",
-    showToast: false,
-    toastColor: "#d1403f",
-  };
+const initialState = {
+  toasts: [],
+};
 
-  const [toastData, dispatchToastData] = useReducer(toastReducer, initialState);
+function reducer(state = initialState, action) {
+  switch (action.type) {
+    case actions.ADD_TOAST:
+      return { ...state, toasts: state.toasts.concat(action.payload.toast) };
+    case actions.REMOVE_TOAST:
+      return {
+        ...state,
+        toasts: state.toasts.filter(({ id }) => id !== action.payload.id),
+      };
+    default:
+      return state;
+  }
+}
 
-  const setupToast = (msg, bgColor) => {
-    const { SET_TOAST } = actions;
-    dispatchToastData({
-      type: SET_TOAST,
-      payload: { msg, status: true, color: bgColor },
-    });
-  };
+export function ToastProvider({ children }) {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const { CLEAR_TOAST } = actions;
-      dispatchToastData({ type: CLEAR_TOAST });
-    }, 3000);
+  const addToast = useCallback(
+    (message, type) =>
+      dispatch({
+        type: actions.ADD_TOAST,
+        payload: { toast: { id: getId(), message, type } },
+      }),
+    []
+  );
 
-    return () => clearTimeout(timer);
-  }, [toastData.toastMsg]);
+  const removeToast = useCallback(
+    (id) => dispatch({ type: actions.REMOVE_TOAST, payload: { id } }),
+    []
+  );
 
   return (
     <ToastContext.Provider
-      value={{ ...toastData, dispatchToastData, setupToast }}
+      value={{ ...state, dispatch, addToast, removeToast }}
     >
       {children}
     </ToastContext.Provider>
   );
-};
+}
 
-const useToast = () => useContext(ToastContext);
-
-export { ToastProvider, useToast };
+export const useToast = () => useContext(ToastContext);

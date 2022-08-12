@@ -1,25 +1,35 @@
+import { useEffect } from "react";
+import { RiErrorWarningFill } from "react-icons/ri";
+import { IoMdClose, IoMdCheckmarkCircleOutline } from "react-icons/io";
+
 import "./Toast.css";
-import { IoMdClose } from "react-icons/io";
 
 import { useToast } from "../../contexts";
-import { actions } from "../../utils/actions";
 
-const Toast = () => {
-  const { CLEAR_TOAST } = actions;
-  const { toastMsg, showToast, dispatchToastData } = useToast();
+const Toast = ({ id, message, type = "success" }) => {
+  const { removeToast } = useToast();
+
+  useEffect(() => {
+    setTimeout(() => {
+      removeToast(id);
+    }, 3000);
+  }, [id, removeToast]);
 
   return (
     <div
-      className="toast"
-      style={{ visibility: showToast ? "visible" : "hidden" }}
+      className={`toast ${
+        type === "error" ? "toast__error" : "toast__success"
+      }`}
     >
+      {type === "error" ? (
+        <RiErrorWarningFill className="toast__icon" />
+      ) : (
+        <IoMdCheckmarkCircleOutline className="toast__icon" />
+      )}
       <article className="toast__content">
-        <span className="toast__msg text-truncate">{toastMsg}</span>
+        <span className="toast__msg text-truncate">{message}</span>
       </article>
-      <button
-        className="toast__btn--close"
-        onClick={() => dispatchToastData({ type: CLEAR_TOAST })}
-      >
+      <button className="toast__btn--close" onClick={removeToast}>
         <IoMdClose className="toast__icon" />
       </button>
     </div>

@@ -1,15 +1,16 @@
 import "./App.css";
 
 import { Router } from "./routers/Router";
-import { Header } from "./components";
-import { Toast } from "./components";
+import { Header, ToastsPortal, ToastContainer } from "./components";
 
 function App() {
   return (
     <div className="App">
       <Header />
       <Router />
-      <Toast />
+      <ToastsPortal>
+        <ToastContainer />
+      </ToastsPortal>
     </div>
   );
 }

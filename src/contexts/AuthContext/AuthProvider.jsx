@@ -7,13 +7,13 @@ import {
 } from "react";
 import { useSetupAuth } from "../../hooks/useSetupAuth";
 
-import { useToast } from "../ToastContext/ToastProvider";
 import { authReducer } from "./authReducer";
+import { useToast } from "../../contexts";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const { setupToast } = useToast();
+  const { addToast } = useToast();
 
   const initialData = {
     userID: "",
@@ -24,11 +24,9 @@ const AuthProvider = ({ children }) => {
 
   const [userData, dispatchUserData] = useReducer(authReducer, initialData);
   const stableSetupAuth = useRef(useSetupAuth(dispatchUserData));
-  const stableSetupToast = useRef(setupToast);
 
   useEffect(() => {
     const setupAuth = stableSetupAuth.current;
-    const setupToast = stableSetupToast.current;
 
     const { token, id, name } = JSON.parse(localStorage?.getItem("ttv")) || {
       token: "",
@@ -39,9 +37,9 @@ const AuthProvider = ({ children }) => {
     if (token && id && name) {
       setupAuth({ token, id, name, path: "/", data: null });
     } else {
-      setupToast("You're not logged in....");
+      // addToast("You're not logged in....", "error");
     }
-  }, []);
+  }, [addToast]);
 
   return (
     <AuthContext.Provider

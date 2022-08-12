@@ -7,7 +7,7 @@ import { useToast } from "../contexts";
 const useSetupAuth = (dispatchUserData) => {
   const { SET_USER_CREDENTIALS } = actions;
   const navigate = useNavigate();
-  const { setupToast } = useToast();
+  const { addToast } = useToast();
 
   return ({ token, id, name, path, data }) => {
     if (token && id && name) {
@@ -24,7 +24,7 @@ const useSetupAuth = (dispatchUserData) => {
       setupAuthHeaderForServiceCalls(token);
     }
 
-    authExceptionHandler(navigate, setupToast, dispatchUserData);
+    authExceptionHandler(navigate, addToast, dispatchUserData);
     navigate(path, { state: { data } });
   };
 };

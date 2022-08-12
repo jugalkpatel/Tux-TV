@@ -1,0 +1,45 @@
+.toast__container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  z-index: var(--z-index-six);
+}
+
+@media screen and (min-width: 768px) {
+  .toast__container {
+    width: 55vw;
+    right: 0;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .toast__container {
+    width: 50vw;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .toast__container {
+    width: 40vw;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .toast__container {
+    width: 30vw;
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  .toast__container {
+    width: 25vw;
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  .toast__container {
+    width: 25vw;
+  }
+}

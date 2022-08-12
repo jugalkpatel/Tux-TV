@@ -6,7 +6,7 @@ import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { PlaylistVideoRemove } from "./PlaylistVideoRemove";
 import { SaveButton } from "..";
 
-const PlayListTile = ({ video, playlistID }) => {
+const PlayListTile = ({ video, playlistID, playlistTitle }) => {
   const { id, title, channel, thumbnail_src } = video;
 
   return (
@@ -27,7 +27,9 @@ const PlayListTile = ({ video, playlistID }) => {
       </Link>
 
       <article className="pt__tray">
-        <PlaylistVideoRemove data={{ playlistID, videoID: id }} />
+        <PlaylistVideoRemove
+          data={{ playlistID, videoID: id, title: playlistTitle }}
+        />
 
         <SaveButton
           data={{

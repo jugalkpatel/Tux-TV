@@ -42,6 +42,14 @@
   outline: 2px solid var(--i-green);
 }
 
+.login__input--password:not(:placeholder-shown):invalid {
+  outline: 2px solid var(--c-red);
+}
+
+.login__input--email:not(:placeholder-shown):invalid {
+  outline: 2px solid var(--c-red);
+}
+
 .wrapper--password {
   display: grid;
   grid-template-columns: auto var(--u-2);

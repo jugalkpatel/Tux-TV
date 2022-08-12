@@ -9,10 +9,10 @@ import { postAPI } from "../../utils/postAPI";
 import { useAuth, useData, useToast } from "../../contexts";
 
 const PlaylistVideoRemove = ({ data }) => {
-  const { playlistID, videoID } = data;
+  const { playlistID, videoID, title } = data;
   const { dispatchData } = useData();
   const { userID } = useAuth();
-  const { setupToast } = useToast();
+  const { addToast } = useToast();
 
   const { REMOVE_FROM_PLAYLIST } = actions;
 
@@ -34,8 +34,9 @@ const PlaylistVideoRemove = ({ data }) => {
           type: REMOVE_FROM_PLAYLIST,
           payload: { ...data.details },
         });
+        addToast(`Removed from ${title}`);
       } else {
-        setupToast("error while removing video from playlist....");
+        addToast("error while removing video from playlist....", "error");
       }
     }
   };

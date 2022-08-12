@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 
 import Loader from "react-loader-spinner";
@@ -22,13 +22,17 @@ const SaveButton = ({ data }) => {
   const navigate = useNavigate();
   const { saves, dispatchData } = useData();
   const { userID, isLoggedIn } = useAuth();
-  const { setupToast } = useToast();
+  const { addToast } = useToast();
 
   const [isLoading, setLoading] = useState(false);
 
   const isVideoInSaves = isInSaves(id, saves);
   const action = !isVideoInSaves ? ADD_TO_SAVE : REMOVE_FROM_SAVE;
   const svg = !isVideoInSaves ? svgNotSaved : svgSaved;
+
+  useEffect(() => {
+    return () => setLoading(false);
+  }, []);
 
   const onSaveClick = async () => {
     setLoading(true);
@@ -43,9 +47,13 @@ const SaveButton = ({ data }) => {
       setLoading(false);
 
       if (status === 201) {
+        const toastMessage = !isVideoInSaves
+          ? "Added to Saves"
+          : "Removed from Saves";
         dispatchData({ type: action, payload: { ...data } });
+        addToast(toastMessage);
       } else {
-        setupToast("Operation failed....");
+        addToast("Operation failed....", "error");
       }
     }
   };

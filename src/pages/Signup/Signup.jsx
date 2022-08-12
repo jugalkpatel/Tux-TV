@@ -37,6 +37,7 @@ const Signup = () => {
           Username
         </label>
         <input
+          type="text"
           id="name"
           className="signup__input--uname"
           placeholder="Enter Username"
@@ -57,6 +58,7 @@ const Signup = () => {
         </label>
         <input
           id="email"
+          type="email"
           className="signup__input--email"
           placeholder="Enter Email"
           pattern="[^@]+@[^@]+\.[a-zA-Z]{2,}"
@@ -78,7 +80,7 @@ const Signup = () => {
             type={signupData.showPassword ? "text" : "password"}
             id="password"
             className="signup__input--password"
-            placeholder="Enter Password"
+            placeholder="Enter Password(8 chars with atleast one number and one capital)"
             minLength="8"
             pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
             value={signupData.password}
@@ -106,7 +108,7 @@ const Signup = () => {
             type={signupData.showPassword ? "text" : "password"}
             id="cpassword"
             className="signup__input--password"
-            placeholder="Enter Password"
+            placeholder=" Same as Password"
             minLength="8"
             value={signupData.confirmPassword}
             onChange={(e) =>
@@ -131,10 +133,11 @@ const Signup = () => {
               btnText: "Sign up",
               btnType: "SIGNUP",
               btnClass: "signup__btn--signup",
-              userName: signupData.userName,
-              email: signupData.email,
-              password: signupData.password,
-              confirmPassword: signupData.confirmPassword,
+              userName: signupData.userName.trim() || signupData.userName,
+              email: signupData.email.trim() || signupData.email,
+              password: signupData.password.trim() || signupData.password,
+              confirmPassword:
+                signupData.confirmPassword.trim() || signupData.confirmPassword,
             }}
           />
 

@@ -17,6 +17,8 @@ const actions = {
   CLEAR_TOAST: "CLEAR_TOAST",
   SET_SHOW_TOAST: "SET_SHOW_TOAST",
   SET_TOAST_COLOR: "SET_TOAST_COLOR",
+  ADD_TOAST: "ADD_TOAST",
+  REMOVE_TOAST: "REMOVE_TOAST",
 };
 
 export { actions };

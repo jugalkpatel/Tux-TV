@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./CheckBox.css";
@@ -14,13 +14,17 @@ const CheckBox = ({ videoID, ...playlist }) => {
   const { ADD_TO_PLAYLIST, REMOVE_FROM_PLAYLIST } = actions;
   const { playlists, dispatchData } = useData();
   const { userID, isLoggedIn } = useAuth();
-  const { setupToast } = useToast();
+  const { addToast } = useToast();
   const navigate = useNavigate();
 
   const isInPlaylist = isVideoInPlaylist(videoID, id, playlists);
 
   const [isLoading, setLoading] = useState(false);
   const action = !isInPlaylist ? ADD_TO_PLAYLIST : REMOVE_FROM_PLAYLIST;
+
+  useEffect(() => {
+    return () => setLoading(false);
+  }, []);
 
   const onPlaylistChecked = async () => {
     setLoading(true);
@@ -35,9 +39,13 @@ const CheckBox = ({ videoID, ...playlist }) => {
       setLoading(false);
 
       if (status === 201) {
+        const toastMessage = !isInPlaylist
+          ? `Added to ${title}`
+          : `Removed from ${title}`;
         dispatchData({ type: action, payload: { ...data.details } });
+        addToast(toastMessage);
       } else {
-        setupToast("error while adding video to the playlist....");
+        addToast("error while adding video to the playlist....", "error");
       }
     }
   };

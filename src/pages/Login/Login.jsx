@@ -12,7 +12,12 @@ const Login = () => {
   const path = state?.from || "/";
   const details = state?.data || "";
 
-  const initialLoginData = { email: "", password: "", showPassword: false };
+  const initialLoginData = {
+    email: "",
+    password: "",
+    showPassword: false,
+    submitting: false,
+  };
 
   const [loginData, dispatchLoginData] = useReducer(
     loginReducer,
@@ -34,10 +39,10 @@ const Login = () => {
           Email
         </label>
         <input
+          type="email"
           id="email"
           className="login__input--email"
           placeholder="Enter Email"
-          pattern="[^@]+@[^@]+\.[a-zA-Z]{2,}"
           onChange={(e) =>
             dispatchLoginData({
               type: "UPDATE_EMAIL",
@@ -56,7 +61,7 @@ const Login = () => {
             type={loginData.showPassword ? "text" : "password"}
             id="password"
             className="login__input--password"
-            placeholder="Enter Password"
+            placeholder="Enter Password(8 chars with atleast one number and one capital)"
             pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
             value={loginData.password}
             onChange={(e) =>
@@ -76,11 +81,11 @@ const Login = () => {
           </button>
         </div>
 
-        <div className="wrapper--forgetpassword">
+        {/* <div className="wrapper--forgetpassword">
           <Link to="/login" className="login__btn--fpassword">
             Forget Password?
           </Link>
-        </div>
+        </div> */}
 
         <div className="wrapper--actions">
           <AuthButton
@@ -88,8 +93,10 @@ const Login = () => {
               btnText: "Login",
               btnType: "LOGIN",
               btnClass: "login__btn--login",
-              email: loginData.email,
-              password: loginData.password,
+              email: loginData.email.trim() || loginData.email,
+              password: loginData.password.trim() || loginData.password,
+              callback: () => dispatchLoginData({ type: "SUBMIT" }),
+              submitting: loginData.submitting,
               path,
               details,
             }}
@@ -109,6 +116,8 @@ const Login = () => {
               ldColor: "#FFD14A",
               email: "guest@gmail.com",
               password: "guest1234",
+              callback: () => dispatchLoginData({ type: "SUBMIT" }),
+              submitting: loginData.submitting,
               path,
               details,
             }}
