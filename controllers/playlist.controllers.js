@@ -15,7 +15,7 @@ const createPlaylist = async (req, res) => {
   await user.playlists.push(playlist);
   await user.save();
 
-  const response = res.status(201).json({
+  res.status(201).json({
     success: true,
     message: "Playlist created successfully",
     playlist,
