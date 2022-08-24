@@ -53,7 +53,7 @@ const SaveButton = ({ data }) => {
         dispatchData({ type: action, payload: { ...data } });
         addToast(toastMessage);
       } else {
-        addToast("Operation failed....", "error");
+        addToast("Operation Failed...", "error");
       }
     }
   };

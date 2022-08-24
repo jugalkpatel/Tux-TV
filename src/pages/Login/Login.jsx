@@ -61,7 +61,7 @@ const Login = () => {
             type={loginData.showPassword ? "text" : "password"}
             id="password"
             className="login__input--password"
-            placeholder="Enter Password(8 chars with atleast one number and one capital)"
+            placeholder="Enter Password(At least 8 letters with a number)"
             pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
             value={loginData.password}
             onChange={(e) =>
@@ -71,6 +71,7 @@ const Login = () => {
               })
             }
             minLength="8"
+            maxLength="20"
             required
           />
           <button
@@ -114,8 +115,8 @@ const Login = () => {
               btnType: "LOGIN",
               btnClass: "login__btn--asguest",
               ldColor: "#FFD14A",
-              email: "guest@gmail.com",
-              password: "guest1234",
+              email: process.env.REACT_APP_GUEST_EMAIL,
+              password: process.env.REACT_APP_GUEST_PASSWORD,
               callback: () => dispatchLoginData({ type: "SUBMIT" }),
               submitting: loginData.submitting,
               path,

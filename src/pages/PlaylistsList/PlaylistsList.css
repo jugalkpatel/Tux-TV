@@ -29,7 +29,17 @@
 }
 
 @media screen and (min-width: 568px) {
+  .playlists {
+    padding: var(--u-1) var(--u-2);
+  }
+
   .pl__main {
     gap: var(--u-2);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .pl__main {
+    justify-content: start;
   }
 }
