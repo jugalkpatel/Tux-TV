@@ -4,7 +4,8 @@
   font-size: var(--u-1p2);
   font-weight: 300;
 
-  margin-left: var(--u-1);
+  /* margin-left: var(--u-1); */
+  word-break: break-all;
 }
 
 input[type="checkbox"] {

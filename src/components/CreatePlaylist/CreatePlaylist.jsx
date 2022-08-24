@@ -31,7 +31,7 @@ const showError = debounced((value, playlists, setError) => {
   } else {
     setError(false);
   }
-}, 1000);
+}, 200);
 
 const CreatePlaylist = ({ displayAddPlaylist }) => {
   const { CREATE_PLAYLIST } = actions;
@@ -57,7 +57,7 @@ const CreatePlaylist = ({ displayAddPlaylist }) => {
 
     setLoading(true);
 
-    if (!isLoading) {
+    if (!isLoading && !isError) {
       const { data, status } = await postAPI(
         `/user/${userID}/playlists/create`,
         { title }
@@ -90,7 +90,7 @@ const CreatePlaylist = ({ displayAddPlaylist }) => {
         value={title}
         onChange={handleChange}
         minLength="1"
-        maxLength="200"
+        maxLength="60"
       />
       {isError && (
         <span className="cp__label--error">Playlist Name not available !</span>
