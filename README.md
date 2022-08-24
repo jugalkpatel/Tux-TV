@@ -1,4 +1,4 @@
-# Tux-TV - Video Library [![Netlify Status](https://api.netlify.com/api/v1/badges/5db599d2-6d5d-445a-973c-f897ae5cd205/deploy-status)](https://app.netlify.com/sites/tuxtv/deploys)
+# Tux-TV - Video Library [![Netlify Status](https://api.netlify.com/api/v1/badges/a139a4fb-1631-4267-83ed-2cdcaed687a6/deploy-status)](https://app.netlify.com/sites/tuxtv/deploys)
 
 Tux TV is an full-stack video-library app that contains video related to linux, vim, distors etc.
 
