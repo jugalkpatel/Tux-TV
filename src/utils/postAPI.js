@@ -4,9 +4,7 @@ const postAPI = async (url, payload) => {
     const { data, status } = await axios.post(url, payload);
     return { data, status };
   } catch (error) {
-    // console.error(error.response);
-    console.log(error);
-    const { data, status } = error.response;
+    const { data, status } = error?.response || { data: null, status: 404 };
     return { data, status };
   }
 };

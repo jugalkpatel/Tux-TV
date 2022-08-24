@@ -25,7 +25,7 @@ const useSetupAuth = (dispatchUserData) => {
     }
 
     authExceptionHandler(navigate, addToast, dispatchUserData);
-    navigate(path, { state: { data } });
+    navigate(path, { replace: true, state: { data } });
   };
 };
 

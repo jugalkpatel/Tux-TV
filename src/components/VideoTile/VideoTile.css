@@ -7,7 +7,7 @@
 
 .vtile__back {
   height: 100vh;
-  max-height: 80vh;
+  /* max-height: 80vh; */
 
   opacity: 0.5;
 
@@ -161,6 +161,7 @@
   .vtile__front {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
   }
 
   .vtile__title {

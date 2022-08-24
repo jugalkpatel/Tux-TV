@@ -1,7 +1,7 @@
 import axios from "axios";
 import { actions } from "./actions";
 import { logout } from "./logout";
-
+// pass ready made logout
 const authExceptionHandler = (navigate, addToast, dispatchUserData) => {
   const { REMOVE_USER_CREDENTIALS } = actions;
   const UNAUTHORIZED = 401;
@@ -13,7 +13,9 @@ const authExceptionHandler = (navigate, addToast, dispatchUserData) => {
         logout(dispatchUserData, REMOVE_USER_CREDENTIALS);
         navigate("/login");
       }
-      return Promise.reject(error);
+      // return Promise.reject(error);
+      Promise.reject(error);
+      return;
     }
   );
 };

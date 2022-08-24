@@ -9,6 +9,12 @@ const DataContext = createContext();
 
 const DataProvider = ({ children }) => {
   const { userID, token } = useAuth();
+  const initialData = {
+    playlists: [],
+    saves: [],
+  };
+
+  const [state, dispatchData] = useReducer(dataReducer, initialData);
 
   useEffect(() => {
     (async () => {
@@ -43,12 +49,12 @@ const DataProvider = ({ children }) => {
     })();
   }, [token, userID]);
 
-  const initialData = {
-    playlists: [],
-    saves: [],
-  };
-
-  const [state, dispatchData] = useReducer(dataReducer, initialData);
+  useEffect(() => {
+    if (!token) {
+      const { CLEAR_DATA } = actions;
+      dispatchData({ type: CLEAR_DATA });
+    }
+  }, [token]);
 
   return (
     <DataContext.Provider value={{ ...state, dispatchData }}>

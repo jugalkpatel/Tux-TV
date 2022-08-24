@@ -31,7 +31,17 @@
 }
 
 @media screen and (min-width: 568px) {
+  .saves {
+    padding: var(--u-1) var(--u-2);
+  }
+
   .playlist__main {
     gap: var(--u-2);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .saves__main {
+    justify-content: start;
   }
 }

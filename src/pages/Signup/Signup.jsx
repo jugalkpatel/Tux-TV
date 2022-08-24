@@ -80,8 +80,9 @@ const Signup = () => {
             type={signupData.showPassword ? "text" : "password"}
             id="password"
             className="signup__input--password"
-            placeholder="Enter Password(8 chars with atleast one number and one capital)"
+            placeholder="Enter Password(At least 8 letters with a number)"
             minLength="8"
+            maxLength="20"
             pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
             value={signupData.password}
             onChange={(e) =>
@@ -110,6 +111,7 @@ const Signup = () => {
             className="signup__input--password"
             placeholder=" Same as Password"
             minLength="8"
+            maxLength="20"
             value={signupData.confirmPassword}
             onChange={(e) =>
               dispathSignUpData({
