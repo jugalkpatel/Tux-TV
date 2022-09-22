@@ -6,7 +6,7 @@ Tux TV is an full-stack video-library app that contains video related to linux, 
 
 Fronted: React, HTML, CSS
 
-[Backend](https://github.com/jugalkpatel/Tux-TV/tree/development--backend): Node, Express, Mongoose ODM, MongoDB
+[Backend](https://github.com/jugalkpatel/Tuxtv_backend): Node, Express, Mongoose ODM, MongoDB
 
 ## Features
 
